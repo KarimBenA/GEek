@@ -10,7 +10,6 @@ public class Utilisateur implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	Long ID;
 	String nom;
 	String prenom;
 	Date ddn;
@@ -20,14 +19,6 @@ public class Utilisateur implements Serializable {
 	String genre;
 	Boolean fumeur;
 	Boolean blabla;
-
-	public Long getID() {
-		return ID;
-	}
-
-	public void setID(Long iD) {
-		ID = iD;
-	}
 
 	public String getNom() {
 		return nom;
