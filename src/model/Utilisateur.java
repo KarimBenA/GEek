@@ -99,7 +99,7 @@ public class Utilisateur implements Serializable {
 
 	@Override
 	public String toString() {
-		return this.getPrenom() + " // " + this.getNom();
+		return this.getPrenom() + this.getNom();
 	}
 
 }
