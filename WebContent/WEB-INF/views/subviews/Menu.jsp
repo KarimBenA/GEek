@@ -17,6 +17,8 @@
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="<c:url value="/AllUsers"/>">Afficher les
 						utilisateurs</a></li>
+				<li><a href="<c:url value="/MapsTest"/>">Page de test
+						MAPS</a></li>
 				<li><a href="<c:url value="/AddUser"/>">Créer un nouvel
 						utilisateur</a></li>
 				<c:if test="${!connecte }"><li><a href="<c:url value="/Connection"/>">Se connecter</a></li></c:if>
