@@ -11,15 +11,20 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="<c:url value="/"/>">Acceuil</a>
+			<a class="navbar-brand" href="<c:url value="/"/>">GEeK</a>
 		</div>
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="<c:url value="/AllUsers"/>">Afficher les
+				<li><a href="<c:url value="/AllUsers"/>">Afficher les
 						utilisateurs</a></li>
 				<li><a href="<c:url value="/AddUser"/>">Créer un nouvel
 						utilisateur</a></li>
-				<c:if test="${!connecte }"><li><a href="<c:url value="/Connection"/>">Se connecter</a></li></c:if>
+				</ul>		
+				<ul class="nav navbar-nav navbar-right">
+				<c:if test="${!connecte }">
+				<li><a href="<c:url value="/Inscription"/>">S'inscrire</a></li>
+				<li><a href="<c:url value="/Connection"/>">Se connecter</a></li>
+				</c:if>
 				<c:if test="${connecte }">
 				<li><a href="<c:url value="/Profil"/>">${utilisateurConnecte.getPrenom()} ${utilisateurConnecte.getNom()}</a></li>
 				<li><a href="<c:url value="/Deconnection"/>">Se déconnecter</a></li>

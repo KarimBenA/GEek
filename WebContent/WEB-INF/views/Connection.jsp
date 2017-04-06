@@ -18,7 +18,7 @@
 
 <c:import url="/WEB-INF/views/subviews/Menu.jsp" />
 	<div class="container">
-		<h2>Page de connection</h2>
+		<h2>Page de connexion</h2>
 		
 		<c:import url="/WEB-INF/views/subviews/LoginForm.jsp" />
 		

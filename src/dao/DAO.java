@@ -99,6 +99,7 @@ public class DAO {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		u1.setDdn(ddn);
 		u1.setEmail("albert.muller@gmail.com");
 		u1.setPwd("0000");
 		u1.setTelephone("00.00.00.00.00");
@@ -106,7 +107,6 @@ public class DAO {
 		u1.setFumeur(true);
 		u1.setBlabla(true);
 		bdd.put(u1.getEmail(), u1);
-		
 		
 		
 		Utilisateur u2 = new Utilisateur();
@@ -118,6 +118,7 @@ public class DAO {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		u2.setDdn(ddn);
 		u2.setEmail("josephine.schmitt@gmail.com");
 		u2.setPwd("0000");
 		u2.setTelephone("00.00.00.00.01");
