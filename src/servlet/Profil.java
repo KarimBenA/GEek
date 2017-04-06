@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.DAO;
 
-@WebServlet("/")
+@WebServlet("/Profil")
 public class Profil extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
