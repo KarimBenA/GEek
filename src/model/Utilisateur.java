@@ -10,7 +10,6 @@ public class Utilisateur implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-
 	String nom;
 	String prenom;
 	Date ddn;
@@ -20,7 +19,15 @@ public class Utilisateur implements Serializable {
 	String genre;
 	Boolean fumeur;
 	Boolean blabla;
-
+	Adresse adresse;
+	
+	
+	@Override
+	public String toString() {
+		return this.getPrenom() + " " + this.getNom();
+	}
+	
+	
 	public String getNom() {
 		return nom;
 	}
@@ -96,10 +103,14 @@ public class Utilisateur implements Serializable {
 	public void setBlabla(Boolean blabla) {
 		this.blabla = blabla;
 	}
-
-	@Override
-	public String toString() {
-		return this.getPrenom() + " // " + this.getNom();
+	
+	public Adresse getAdresse() {
+		return adresse;
 	}
+
+	public void setAdresse(Adresse adresse) {
+		this.adresse = adresse;
+	}
+
 
 }

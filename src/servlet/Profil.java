@@ -24,9 +24,6 @@ public class Profil extends HttpServlet{
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DAO dao = DAO.getInstance();
-		request.getSession().setAttribute("utilisateurConnecte", dao.getUtilisateur("albert.muller@gmail.com"));
-		
 		RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/views/Profil.jsp");
 		dispatch.forward(request, response);
 	}
