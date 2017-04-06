@@ -17,7 +17,9 @@
 			<ul class="nav navbar-nav">
 				<li><a href="<c:url value="/AllUsers"/>">Afficher les
 						utilisateurs</a></li>
-				<li><a href="<c:url value="/AddUser"/>">Créer un nouvel
+				<li><a href="<c:url value="/MapsTest"/>">Page de test
+						MAPS</a></li>
+				<li><a href="<c:url value="/Inscription"/>">Créer un nouvel
 						utilisateur</a></li>
 				</ul>		
 				<ul class="nav navbar-nav navbar-right">

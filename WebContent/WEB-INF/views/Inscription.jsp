@@ -6,7 +6,8 @@
 <html>
 <head>
 <link rel="stylesheet" href="/WEB-INF/lib/bootstrap.min.css">
-<link type="text/css" rel="stylesheet" href="/WEB-INF/lib/UserManagerStyle.css" />
+<link type="text/css" rel="stylesheet"
+	href="/WEB-INF/lib/UserManagerStyle.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>EditUser</title>
 </head>
@@ -49,20 +50,21 @@
 		</p>
 
 		<p>
-			Vous êtes : <label><input type="radio" id="genre_homme" name="genre"
-				value="homme">Un homme</label> <label><input type="radio" id="genre_femme"
-				name="genre" value="femme">Une femme</label>
+			Vous êtes : <label><input type="radio" id="genre_homme"
+				name="genre" value="homme">Un homme</label> <label><input
+				type="radio" id="genre_femme" name="genre" value="femme">Une
+				femme</label>
 		</p>
 
 		<p>
-			Vous êtes fumeur : 
-			<label><input type="radio" id="fumeur_oui" name="fumeur" value="oui">Oui</label>
-			<label><input type="radio" id="fumeur_non" name="fumeur" value="non">Non</label>
+			Vous êtes fumeur : <label><input type="radio" id="fumeur_oui"
+				name="fumeur" value="oui">Oui</label> <label><input
+				type="radio" id="fumeur_non" name="fumeur" value="non">Non</label>
 		</p>
 
 		<p>
-			Vous aimez discuter : <label><input type="radio" id="blabla_oui"
-				name="blabla" value="oui">Oui</label> <label><input
+			Vous aimez discuter : <label><input type="radio"
+				id="blabla_oui" name="blabla" value="oui">Oui</label> <label><input
 				type="radio" id="blabla_non" name="blabla" value="non">Non</label>
 		</p>
 

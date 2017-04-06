@@ -89,8 +89,7 @@ public class Inscription extends HttpServlet {
 			// validerAge("" + age);
 		} catch (Exception e) {
 			response.getWriter().println(e.getMessage());
-			//this.getServletContext().getRequestDispatcher("Inscription").include(request, response);
-			//response.sendRedirect("Inscription");
+			this.getServletContext().getRequestDispatcher("Inscription").include(request, response);
 
 		} finally {
 			Utilisateur utilisateur = new Utilisateur();
@@ -105,7 +104,7 @@ public class Inscription extends HttpServlet {
 			utilisateur.setBlabla(blabla);
 			dao.ajouteUtilisateur(utilisateur);
 			System.out.println(dao.getUtilisateur(email).getNom() + " " + dao.getUtilisateur(email).getPrenom());
-			response.sendRedirect("/");
+			response.sendRedirect("index.jsp");
 
 		}
 	}
