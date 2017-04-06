@@ -10,7 +10,6 @@ import model.Utilisateur;
 public class DAO {
 	
 	private static DAO instance = null;
-	
 	private HashMap<String, Utilisateur> bdd;
 	
 	
@@ -18,6 +17,7 @@ public class DAO {
 		bdd = new HashMap<String, Utilisateur>();
 		createBdd();
 	}
+	
 	
 	public static DAO getInstance(){
 		if(instance == null){
@@ -27,6 +27,7 @@ public class DAO {
 	}
 	
 	
+	
 	public boolean ajouteUtilisateur(Utilisateur utilisateur){
 		if(bdd.containsValue(utilisateur)){
 			return false;
@@ -34,7 +35,6 @@ public class DAO {
 			bdd.put(utilisateur.getEmail(), utilisateur);
 			return true;
 		}
-		
 	}
 	
 	public boolean supprimeUtilisateur(Utilisateur utilisateur){
