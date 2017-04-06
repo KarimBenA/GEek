@@ -89,7 +89,7 @@ public class Inscription extends HttpServlet {
 			// validerAge("" + age);
 		} catch (Exception e) {
 			response.getWriter().println(e.getMessage());
-			this.getServletContext().getRequestDispatcher("EditUser").include(request, response);
+			this.getServletContext().getRequestDispatcher("Inscription").include(request, response);
 
 		} finally {
 			Utilisateur utilisateur = new Utilisateur();

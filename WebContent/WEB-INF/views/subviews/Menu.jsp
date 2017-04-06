@@ -19,7 +19,7 @@
 						utilisateurs</a></li>
 				<li><a href="<c:url value="/MapsTest"/>">Page de test
 						MAPS</a></li>
-				<li><a href="<c:url value="/AddUser"/>">Créer un nouvel
+				<li><a href="<c:url value="/Inscription"/>">Créer un nouvel
 						utilisateur</a></li>
 				<c:if test="${!connecte }"><li><a href="<c:url value="/Connection"/>">Se connecter</a></li></c:if>
 				<c:if test="${connecte }">
