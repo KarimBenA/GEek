@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="GEek">
+    <wb-module deploy-name="GEeK">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="GEek"/>
-        <property name="java-output-path" value="/GEek/build/classes"/>
+        <property name="java-output-path" value="/GEeK/build/classes"/>
+        <property name="context-root" value="GEeK"/>
     </wb-module>
 </project-modules>
