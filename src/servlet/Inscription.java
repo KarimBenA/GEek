@@ -16,6 +16,7 @@ import model.Utilisateur;
 
 @WebServlet("/Inscription")
 public class Inscription extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 
 	public Inscription() {
@@ -79,67 +80,6 @@ public class Inscription extends HttpServlet {
 		}
 	}
 
-	// private void validerAge(String age) throws Exception {
-	// if (age != null && age.trim().length() != 0) {
-	// if (Integer.parseInt(age) < 0 || Integer.parseInt(age) > 80) {
-	// throw new Exception("Saisissez un age cohérent");
-	// }
-	// } else {
-	// throw new Exception("L'age est obligatoire");
-	// }
-	// }
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		RequestDispatcher dispatch = request.getRequestDispatcher("WEB-INF/views/Inscription.jsp");
-		dispatch.forward(request, response);
-
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		DAO dao = DAO.getInstance();
-
-		String prenom = request.getParameter("prenom");
-		String nom = request.getParameter("nom");
-
-		String ddnString = request.getParameter("ddn");
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-		Date ddn = null;
-		try {
-			ddn = formatter.parse(ddnString);
-		} catch (ParseException e1) {
-			e1.printStackTrace();
-		}
-		String email = request.getParameter("email");
-		String pwd = request.getParameter("mdp");
-		String telephone = request.getParameter("telephone");
-		String genre = request.getParameter("genre");
-		boolean fumeur = (request.getParameter("fumeur").equals("oui")) ? true : false;
-		boolean blabla = (request.getParameter("blabla").equals("oui")) ? true : false;
-
-		try {
-			validerPrenom(prenom);
-			validerNom(nom);
-			// validerAge("" + age);
-
-			Utilisateur utilisateur = new Utilisateur();
-			utilisateur.setPrenom(prenom);
-			utilisateur.setNom(nom);
-			utilisateur.setDdn(ddn);
-			utilisateur.setEmail(email);
-			utilisateur.setPwd(pwd);
-			utilisateur.setTelephone(telephone);
-			utilisateur.setGenre(genre);
-			utilisateur.setFumeur(fumeur);
-			utilisateur.setBlabla(blabla);
-			dao.ajouteUtilisateur(utilisateur);
-			response.sendRedirect("index.jsp");
-		} catch (Exception e) {
-			response.getWriter().println(e.getMessage());
-			this.getServletContext().getRequestDispatcher("Inscription").include(request, response);
 	private void validerPrenom(String prenom) throws Exception {
 		if (prenom != null && prenom.trim().length() != 0) {
 			if (!prenom.matches("[a-zA-Z]+")) {
