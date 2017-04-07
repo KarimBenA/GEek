@@ -98,7 +98,7 @@ public class Inscription extends HttpServlet {
 			utilisateur.setGenre(genre);
 			utilisateur.setFumeur(fumeur);
 			utilisateur.setBlabla(blabla);
-			dao.ajouteUtilisateur(utilisateur);
+			dao.getInstance().ajouteUtilisateur(utilisateur);
 			response.sendRedirect("index.jsp");
 		} catch (Exception e) {
 			response.getWriter().println(e.getMessage());
