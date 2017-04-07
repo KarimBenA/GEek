@@ -29,7 +29,7 @@ qu'elle ne peut pas être redimensionnée par l'utilisateur
 <script type="text/javascript">
 	var directionsService = new google.maps.DirectionsService(); // service
 	// GoogleMaps
-	var map, geocoder, marker, marker2; // La carte, le service de géocodage et les
+	var map, geocoder, marker, marker2, marker3; // La carte, le service de géocodage et les
 	// marqueurs
 	var depart, arrivee, ptCheck; // point de départ, arrivé et de vérification
 	var directionDisplay;
@@ -174,6 +174,36 @@ qu'elle ne peut pas être redimensionnée par l'utilisateur
 							});
 		}
 	}
+
+	function marquer(srcInteret) {
+		if (geocoder) {
+			geocoder
+					.geocode(
+							{
+								'address' : document.getElementById(srcInteret).value
+							},
+							function(results, status) {
+								if (status == google.maps.GeocoderStatus.OK) {
+									/* ajoute un marqueur à l'adresse choisie */
+									map.setCenter(results[0].geometry.location);
+									if (marker3) {
+										marker3.setMap(null);
+									}
+									marker3 = new google.maps.Marker({
+										map : map,
+										draggable: true,
+										position : results[0].geometry.location
+									});
+									/*
+									 * on remplace l'adresse par celle fournie du
+									 * geocoder
+									 */
+									document.getElementById(srcInteret).value = results[0].formatted_address;
+									interet = results[0].formatted_address;
+								}
+							});
+		}
+	}
 </script>
 
 </head>
@@ -181,7 +211,7 @@ qu'elle ne peut pas être redimensionnée par l'utilisateur
 
 <body onload="init();">
 
-<c:import url="/WEB-INF/views/subviews/Menu.jsp" />
+	<c:import url="/WEB-INF/views/subviews/Menu.jsp" />
 
 	<div>
 		<div id="recherche">
@@ -214,7 +244,18 @@ qu'elle ne peut pas être redimensionnée par l'utilisateur
 
 		<div id="divMap" style="float: left; width: 70%; height: 500px"></div>
 		<div id="divRoute" style="float: right; width: 30%; height: 100%"></div>
-	</div>
 
+
+		<table>
+			<tr>
+				<td><b>Afficher un point d'intérêt : </b></td>
+				<td><input type="text" id="adrInteret" value=""
+					style="width: 300px;"></td>
+				<td><input type="submit" value="Marquer"
+					onclick="marquer('adrInteret')"></td>
+
+			</tr>
+		</table>
+	</div>
 </body>
 </html>
