@@ -71,7 +71,7 @@ public class DAO {
 			em.persist(adress);
 			em.persist(user);
 			em.getTransaction().commit();
-			em.close();
+			//em.close();
 			
 			return true;
 		}
@@ -95,7 +95,7 @@ public class DAO {
 			query.executeUpdate();
 			
 			em.getTransaction().commit();
-			em.close();
+			//em.close();
 			return true;
 		}else{
 			return false;

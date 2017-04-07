@@ -35,10 +35,7 @@
 								<td>E-Mail :</td>
 								<td><strong>${utilisateurConnecte.getEmail()}</strong></td>
 							</tr>
-							<tr>
-								<td>Date de naissance :</td>
-								<td><strong>${utilisateurConnecte.getDdnToString()}</strong></td>
-							</tr>
+							
 							<tr>
 								<td>Téléphone :</td>
 								<td><strong>${utilisateurConnecte.getTelephone()}</strong></td>

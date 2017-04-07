@@ -7,88 +7,6 @@
 <!DOCTYPE html>
 
 <html>
-<<<<<<< HEAD
-<head>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-	crossorigin="anonymous">
-<link type="text/css" rel="stylesheet"
-	href="/WEB-INF/lib/UserManagerStyle.css" />
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>EditUser</title>
-</head>
-<body>
-	<c:import url="/WEB-INF/views/subviews/Menu.jsp" />
-
-
-	<h2>Let's add a user !</h2>
-	<form action="Inscription" method="post">
-		<p>
-			Prénom : <input type="text" name="prenom" placeholder="Votre prénom">
-		</p>
-		<p>
-			Nom : <input type="text" name="nom" placeholder="Votre nom">
-		</p>
-		<p>
-			Date de naissance : <input type="date" class="datepick" name="ddn">
-		</p>
-
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('.datepick').datepicker({
-					dateFormat : 'dd-MM-yy'
-				});
-			});
-		</script>
-
-		<p>
-			E-mail : <input type="text" name="email" placeholder="Votre e-mail">
-		</p>
-
-		<p>
-			Mot de passe : <input type="password" name="pwd"
-				placeholder="Votre mot de passe">
-		</p>
-
-		<p>
-			Telephone : <input type="text" name="telephone"
-				placeholder="Votre numéro de mobile">
-		</p>
-
-		<p>
-			Vous êtes : <label><input type="radio" id="genre_homme"
-				name="genre" value="homme">Un homme</label> <label><input
-				type="radio" id="genre_femme" name="genre" value="femme">Une
-				femme</label>
-		</p>
-
-		<p>
-			Vous êtes fumeur : <label><input type="radio" id="fumeur_oui"
-				name="fumeur" value="oui">Oui</label> <label><input
-				type="radio" id="fumeur_non" name="fumeur" value="non">Non</label>
-		</p>
-
-		<p>
-			Vous aimez discuter : <label><input type="radio"
-				id="blabla_oui" name="blabla" value="oui">Oui</label> <label><input
-				type="radio" id="blabla_non" name="blabla" value="non">Non</label>
-		</p>
-
-
-
-		<p>
-			<input type="submit" name="Inscription" value="S'incrire">
-		</p>
-
-
-	</form>
-</body>
-=======
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<c:import url="/WEB-INF/views/subviews/ImportBootstrap.jsp" />
@@ -134,7 +52,7 @@
 					<div class="form-group">
 							<p class="control-label col-xs-2">Mot de passe : </p>
 							<div class="col-xs-5">
-								<input class="form-control" type="password" name="pwd"	placeholder="Votre mot de passe">
+								<input class="form-control" type="text" name="pwd"	placeholder="Votre mot de passe">
 							</div>
 					</div>
 					<div class="form-group">

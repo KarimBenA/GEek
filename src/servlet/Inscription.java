@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.DAO;
+import model.Adresse;
 import model.Utilisateur;
 
 @WebServlet("/Inscription")
@@ -44,16 +45,17 @@ public class Inscription extends HttpServlet {
 		}
 		util.setDdn(ddn);
 		util.setEmail(request.getParameter("email"));
-		util.setPwd(request.getParameter("mdp"));
+		util.setPwd(request.getParameter("pwd"));
 		util.setTelephone(request.getParameter("telephone"));
 		util.setGenre(request.getParameter("genre"));
 		util.setFumeur(request.getParameter("fumeur").equals("oui"));
 		util.setBlabla(request.getParameter("blabla").equals("oui"));
-		
+		Adresse ad = new Adresse(request.getParameter("numRue"),request.getParameter("codePostal"), request.getParameter("ville"), "FRANCE");
+		util.setAdresse(ad);
 
 		DAO dao = DAO.getInstance();
-		//boolean reussi = dao.ajouteUtilisateur(util);
-		boolean reussi = true;
+		boolean reussi = dao.ajouteUtilisateur(util);
+		//boolean reussi = true;
 		
 		RequestDispatcher dispatch = null;
 		if(reussi){
