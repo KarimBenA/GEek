@@ -28,4 +28,3 @@ public class MapsTest extends HttpServlet {
 	}
 
 }
-////// TUTO ////// https://openclassrooms.com/courses/google-maps-javascript-api-v3 ///////////////
