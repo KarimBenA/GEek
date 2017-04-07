@@ -7,6 +7,16 @@ public class Adresse {
 	private String ville;
 	private String pays;
 
+
+	public Adresse(String numRue, String codePostal, String ville, String pays) {
+		super();
+		this.numRue = numRue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.pays = pays;
+	}
+
+
 	@Override
 	public String toString() {
 		return numRue + " " + codePostal + " " + ville + " " + pays;
