@@ -18,4 +18,9 @@ public class User implements Serializable {
 		super();
 	}
    
+	/* Commentaire Eddy :
+	Essaie de saisir les attributs avec getters et setters
+	peut être que @Entity sera reconnu après ça
+	+ lier à ton workbench
+	*/
 }
