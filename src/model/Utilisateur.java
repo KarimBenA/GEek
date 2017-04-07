@@ -22,6 +22,39 @@ public class Utilisateur implements Serializable {
 	Adresse adresse;
 	
 	
+	public Utilisateur(){
+		
+	}
+	
+	public Utilisateur(String nom, String prenom, String email, String pwd, String telephone, String genre,
+			Boolean fumeur, Boolean blabla, Adresse adresse) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.pwd = pwd;
+		this.telephone = telephone;
+		this.genre = genre;
+		this.fumeur = fumeur;
+		this.blabla = blabla;
+		this.adresse = adresse;
+	}
+	
+	public Utilisateur(String nom, String prenom, String email, String pwd, String telephone, String genre,
+			Boolean fumeur, Boolean blabla, String numRue, String codePostal, String ville, String pays) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.pwd = pwd;
+		this.telephone = telephone;
+		this.genre = genre;
+		this.fumeur = fumeur;
+		this.blabla = blabla;
+		this.adresse = new Adresse(numRue, codePostal, ville, pays);
+	}
+
+
 	@Override
 	public String toString() {
 		return this.getPrenom() + " " + this.getNom();
