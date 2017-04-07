@@ -1,33 +1,57 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page 	language="java" 
+			contentType="text/html; charset=ISO-8859-1"
+    		pageEncoding="ISO-8859-1"%>
+    
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
+
+<!DOCTYPE html>
 <html>
-
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	crossorigin="anonymous">
-<title>Page de connexion</title>
-</head>
-
-<body>
-
-<c:import url="/WEB-INF/views/subviews/Menu.jsp" />
-	<div class="container">
-		<h2>Page de connexion</h2>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<c:import url="/WEB-INF/views/subviews/ImportBootstrap.jsp" />
+		<title>Connexion</title>
+	</head>
+	
+	<body>
+	<c:if test="${wrongIDS==true}">
+		<script>alert("Erreur d'identifiants, essayez à nouveau")</script>
+	</c:if>
+	
+		<c:import url="/WEB-INF/views/subviews/Menu.jsp" />
 		
-		<c:import url="/WEB-INF/views/subviews/LoginForm.jsp" />
-		
-		<!-- 
-		<p>${error }</p>
-		<c:if test="${connected }">Welcome ${logUser.getFirstname()} ! You are successfully identified</c:if>
-		 -->
-		
-	</div>
+			<div class="container">
+				<h2>Connexion</h2>
+				<br /><br />
+				
+				<form class="form-horizontal" method="post" action="Connection" >
+				
+					<div class="form-group">
+							<p class="control-label col-xs-2">Email :</p>
+							<div class="col-xs-5">
+								<input class="form-control" type="email" name="email" placeholder="email@domain.com">
+							</div>
+					</div>
+					<div class="form-group">
+							<p class="control-label col-xs-2">Mot de passe : </p>
+							<div class="col-xs-5">
+								<input class="form-control" type="password" name="pwd" placeholder="pwd" class="form-control">
+							</div>
+					</div>
 
-</body>
+					<br />
+					
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<input class="btn btn-lg btn-success"  type="submit" value="Connexion"/>
+						</div>
+					</div>
+					
+					<br /><br /><br /><br />
+				</form>
+				
+			</div>
+	
+		<c:import url="/WEB-INF/views/subviews/Footer.jsp" />
+	</body>
 </html>

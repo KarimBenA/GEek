@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,77 +12,52 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.DAO;
+import model.Adresse;
 import model.Utilisateur;
 
-/**
- * Servlet implementation class Connection
- */
 @WebServlet("/Connection")
 public class Connection extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public Connection() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		RequestDispatcher dispatch = request.getRequestDispatcher("WEB-INF/views/Connection.jsp");
 		dispatch.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		String id = request.getParameter("email");
+		String pwd = request.getParameter("pwd");
 		
 		DAO dao = DAO.getInstance();
-		
-		HttpSession session = request.getSession();
+		//Utilisateur util = dao.utilisateurExiste(id, pwd);
+		Utilisateur util = new Utilisateur();
+		util.setPrenom("Jean");
+		util.setNom("David");
+		util.setDdn(new Date());
+		util.setEmail("j.d@gggg.fr");
+		util.setPwd("0000");
+		util.setTelephone("0000000000");
+		util.setGenre("homme");
+		util.setFumeur(true);
+		util.setBlabla(true);
+		Adresse ad = new Adresse("3 rue du chien", "68888", "stras", "france");
+		util.setAdresse(ad);
+		//util = null;
 
-		String logEmail = request.getParameter("email");
-		String logMotDePasse = request.getParameter("pwd");
-
-		Utilisateur logUtilisateur = null;
-		String msgErreur = "";
-		
-		
-
-		msgErreur += (logEmail == null || logEmail == "") ? "L'email est obligatoire !\n" : "";
-		msgErreur += (logMotDePasse == null || logMotDePasse == "") ? "Le mot de passe est obligatoire !\n" : "";
-
-		if ((msgErreur != null) && !(msgErreur.equals(""))) {
-			//msgErreur += "jequitte";
-			session.setAttribute("error", msgErreur);
-			response.sendRedirect("Connection");
-		} else {
-
-
-			if (!dao.utilisateurExiste(logEmail, logMotDePasse)) {
-				msgErreur = "Vos identifiants ne permettent pas de vous connecter";
-				session.setAttribute("error", msgErreur);
-				response.sendRedirect("Connection");
-			} else {
-				msgErreur = "Connecté\n";
-				logUtilisateur = dao.getUtilisateur(logEmail);
-				session.setAttribute("connecte", true);
-				session.setAttribute("utilisateurConnecte", logUtilisateur);
-				
-				session.setAttribute("error", msgErreur);
-				response.sendRedirect("index.jsp");
-			}
-			
-			//response.sendRedirect("DetailUser?user=" + logUser.getId());
-
-
+		if(util != null){
+			request.getSession().setAttribute("connecte", true);
+			request.getSession().setAttribute("utilisateurConnecte", util);
+			response.sendRedirect("/GEek");
+		}else{
+			request.getSession().setAttribute("wrongIDS", true);
+			RequestDispatcher dispatch = request.getRequestDispatcher("WEB-INF/views/Connection.jsp");
+			dispatch.forward(request, response);
 		}
 	}
 
