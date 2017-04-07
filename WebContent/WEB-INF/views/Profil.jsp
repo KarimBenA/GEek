@@ -10,27 +10,70 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>GEek - Détail de l'utilisateur</title>
+		<c:import url="/WEB-INF/views/subviews/ImportBootstrap.jsp" />
+		<title>${utilisateurConnecte.toString()}</title>
 	</head>
 	
 	<body>
+		<c:import url="/WEB-INF/views/subviews/Menu.jsp" />
 	
-		<h3>Détails de l'utilisateur : ${utilisateurConnecte.toString()}</h3>
-	
-		<ul>
-			<li>Prénom : ${utilisateurConnecte.getPrenom()}</li>
-			<li>Nom : ${utilisateurConnecte.getNom()}</li>
-			<li>E-Mail : ${utilisateurConnecte.getEmail()}</li>
-			<li>Date de naissance : ${utilisateurConnecte.getDdnToString()}</li>
-			<li>Téléphone : ${utilisateurConnecte.getTelephone()}</li>
-			<li>Genre : ${utilisateurConnecte.getGenre()}</li>
-			<li>Fumeur : ${utilisateurConnecte.getFumeur()}</li>
-			<li>Bavardage : ${utilisateurConnecte.getBlabla()}</li>
-		</ul>
+		<div class="container">
 		
-		<a href="#">Modifier mes informations</a> <br />
-		<a href="#">Supprimer mon compte</a> <br />
+			<h3>Informations de l'utilisateur : ${utilisateurConnecte.toString()}</h3>
+			
+				<table class="table table-striped">
+						<tbody>
+							<tr>
+								<td>Prénom :</td>
+								<td><strong>${utilisateurConnecte.getPrenom()}</strong></td>
+							</tr>
+							<tr>
+								<td>Nom :</td>
+								<td><strong>${utilisateurConnecte.getNom()}</strong></td>
+							</tr>
+							<tr>
+								<td>E-Mail :</td>
+								<td><strong>${utilisateurConnecte.getEmail()}</strong></td>
+							</tr>
+							<tr>
+								<td>Date de naissance :</td>
+								<td><strong>${utilisateurConnecte.getDdnToString()}</strong></td>
+							</tr>
+							<tr>
+								<td>Téléphone :</td>
+								<td><strong>${utilisateurConnecte.getTelephone()}</strong></td>
+							</tr>
+							<tr>
+								<td>Genre :</td>
+								<td><strong>${utilisateurConnecte.getGenre()}</strong></td>
+							</tr>
+							<tr>
+								<td>Fumeur :</td>
+								<td><strong>${utilisateurConnecte.getFumeur()}</strong></td>
+							</tr>
+							<tr>
+								<td>Bavardage :</td>
+								<td><strong>${utilisateurConnecte.getBlabla()}</strong></td>
+							</tr>
+						</tbody>
+				</table>
+			
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<a class="btn btn-lg btn-success"  href="#">Modifier mes informations</a>
+					</div>
+					<div class="col">
+						<a class="btn btn-lg btn-warning"  href="#">Supprimer mon compte</a>
+					</div>
+					<br /><br />
+				</div>
+			</div>
 		
+		</div>
+		
+		
+		<c:import url="/WEB-INF/views/subviews/Footer.jsp" />
 	</body>
 	
 </html>
