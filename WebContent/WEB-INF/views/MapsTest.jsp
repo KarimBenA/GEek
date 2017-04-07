@@ -8,6 +8,10 @@
 
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="initial-scale=1.0">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
 
 <!-- Elément Google Maps indiquant que la carte doit être affiché en plein écran et
 qu'elle ne peut pas être redimensionnée par l'utilisateur 
@@ -60,42 +64,58 @@ qu'elle ne peut pas être redimensionnée par l'utilisateur
 				travelMode : google.maps.DirectionsTravelMode["DRIVING"]
 			};
 			/* appel à l'API pour tracer l'itinéraire */
-			directionsService.route(request, function(response, status) {
-				var itineraire;
-				if (status == google.maps.DirectionsStatus.OK) {
-					directionsDisplay.setDirections(response);
-					var monTrajet = response.routes[0];
-					var latitudes = [];
-					var longitudes = [];
-					for (var i = 0; i < monTrajet.overview_path.length; i++) {
-						var point = monTrajet.overview_path[i];
-						latitudes.push(point.lat());
-						longitudes.push(point.lng());
-						console.log("Lat: " + latitudes[i] + " // Long:"
-								+ longitudes[i]);
-					}
-					
-					toRad = function(degrees) {
-						  return degrees * Math.PI / 180;
-						};
-					
-					function distanceConvert(lat1Deg, lng1Deg, lat2Deg, lng2Deg){
-						var earthRadius = 6378137; //meters
-						var lat1 = toRad(lat1Deg);
-						var lat2 = toRad(lat2Deg);
-						var lng1 = toRad(lng1Deg);
-						var lng2 = toRad(lng2Deg);
-						
-						var dLng = lng2-lng1;
-						
-						var distRad = Math.acos(Math.sin(lat1)*Math.sin(lat2)+Math.cos(lat1)*Math.cos(lat2)*Math.cos(dLng));
-						var distance = earthRadius*distRad;
-						return distance;
-					}
-					
-					console.log(distanceConvert(latitudes[0], longitudes[0], latitudes[1], longitudes[1]));
-				}
-			});
+			directionsService.route(request,
+					function(response, status) {
+						var itineraire;
+						if (status == google.maps.DirectionsStatus.OK) {
+							directionsDisplay.setDirections(response);
+							var monTrajet = response.routes[0];
+							var listePoints = monTrajet.overview_path;
+							var nombrePoints = listePoints.length;
+							var latitudes = [];
+							var longitudes = [];
+							for (var i = 0; i < nombrePoints; i++) {
+								var point = listePoints[i];
+								latitudes.push(point.lat());
+								longitudes.push(point.lng());
+								console.log("Lat: " + latitudes[i]
+										+ " // Long:" + longitudes[i]);
+							}
+
+							toRad = function(degrees) {
+								return degrees * Math.PI / 180;
+							};
+
+							function distanceConvert(lat1Deg, lng1Deg, lat2Deg,
+									lng2Deg) {
+								var earthRadius = 6378137; //meters
+								var lat1 = toRad(lat1Deg);
+								var lat2 = toRad(lat2Deg);
+								var lng1 = toRad(lng1Deg);
+								var lng2 = toRad(lng2Deg);
+
+								var dLng = lng2 - lng1;
+
+								var distRad = Math.acos(Math.sin(lat1)
+										* Math.sin(lat2) + Math.cos(lat1)
+										* Math.cos(lat2) * Math.cos(dLng));
+								var distance = earthRadius * distRad;
+								return distance;
+							}
+
+							for (var i = 0; i < nombrePoints - 1; i++) {
+								console.log(distanceConvert(latitudes[i],
+										longitudes[i], latitudes[i + 1],
+										longitudes[i + 1]));
+							}
+
+							console.log("Distance à vol d'oiseau : "
+									+ distanceConvert(latitudes[0],
+											longitudes[0],
+											latitudes[nombrePoints - 1],
+											longitudes[nombrePoints - 1]));
+						}
+					});
 		}
 	}
 
@@ -160,6 +180,9 @@ qu'elle ne peut pas être redimensionnée par l'utilisateur
 
 
 <body onload="init();">
+
+<c:import url="/WEB-INF/views/subviews/Menu.jsp" />
+
 	<div>
 		<div id="recherche">
 			<table>
