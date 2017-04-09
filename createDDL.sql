@@ -1,48 +1,46 @@
--- -----------------------------------------------------
--- Table Utilisateur
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS Utilisateurs (
-idUtilisateur BIGINT AUTO_INCREMENT NOT NULL, 
-nom VARCHAR(255), 
-prenom VARCHAR(255),
-genre VARCHAR(255),
-email VARCHAR(255),
-pwd VARCHAR(255),
-telephone VARCHAR(255),
-idAdresse BIGINT,
-blabla TINYINT(1) default 0,
-fumeur TINYINT(1) default 0,
-CONSTRAINT pk_utilisateurs PRIMARY KEY (idUtilisateur)
---CONSTRAINT fk_utilisateur_adresse FOREIGN KEY (idAdresse) REFERENCES Adresses (idAdresse)
-)
+CREATE SCHEMA IF NOT EXISTS geek DEFAULT CHARACTER SET utf8 ;
 
 -- -----------------------------------------------------
 -- Table Adresse
 -- -----------------------------------------------------
-CREATE TABLE Adresses (
-idAdresse BIGINT AUTO_INCREMENT NOT NULL,
-numRue VARCHAR(255),
-codePostal VARCHAR(255),
-ville VARCHAR(255),
-pays VARCHAR(255),
-CONSTRAINT pk_adresses PRIMARY KEY (idAdresse)
-)
+CREATE TABLE IF NOT EXISTS geek.adresses (
+  idAdresse BIGINT NOT NULL AUTO_INCREMENT,
+  rue VARCHAR(45) NULL,
+  codePostal VARCHAR(5) NULL,
+  ville VARCHAR(45) NULL,
+  pays VARCHAR(45) NULL,
+  PRIMARY KEY (`idAdresse`));
 
 
 -- -----------------------------------------------------
--- Table Adresse utilisateur
+-- Table Utilisateur
 -- -----------------------------------------------------
---CREATE TABLE Adresses_Utilisateurs (
---idAdresse BIGINT NOT NULL, 
---idUtilisateur BIGINT NOT NULL, 
---CONSTRAINT PRIMARY KEY (Adress_ID, users_ID))
+CREATE TABLE IF NOT EXISTS geek.utilisateurs (
+  idUtilistateur BIGINT NOT NULL AUTO_INCREMENT,
+  nom VARCHAR(45) NULL,
+  prenom VARCHAR(45) NULL,
+  genre VARCHAR(45) NULL,
+  email VARCHAR(45) NULL,
+  pwd VARCHAR(45) NULL,
+  telephone VARCHAR(45) NULL,
+  idAdresse BIGINT NULL,
+  blabla TINYINT(1) NULL,
+  fumeur TINYINT(1) NULL,
+  PRIMARY KEY (idUtilistateur),
+  CONSTRAINT idAdresse
+    FOREIGN KEY (idAdresse)
+    REFERENCES geek.adresses (idAdresse)
+);
 
 
 -- -----------------------------------------------------
 -- Alimentation des tables
 -- -----------------------------------------------------
-INSERT INTO Utilisateurs VALUES
-("Muller", 
+INSERT INTO geek.adresses VALUES (
+1, "1 rue des fleurs", "67000", "Strasbourg", "France");
+INSERT INTO geek.utilisateurs VALUES(
+1, 
+"Muller", 
 "Albert", 
 "homme", 
 "albert.muller@gmail.com", 
@@ -50,10 +48,15 @@ INSERT INTO Utilisateurs VALUES
 "0601000000",
 1,
 1,
-1,
-),
+1
+);
 
-("Schmitt",
+
+INSERT INTO geek.adresses VALUES (
+2, "2 rue des fleurs", "67000", "Strasbourg", "France");
+INSERT INTO geek.utilisateurs VALUES(
+2,
+"Schmitt",
 "Joséphine",
 "femme",
 "josephine.schmitt@gmail.com",
@@ -62,10 +65,15 @@ INSERT INTO Utilisateurs VALUES
 2,
 1,
 0
-),
+);
 
-("Loic",
+
+INSERT INTO geek.adresses VALUES (
+3, "3 rue des fleurs", "67000", "Strasbourg", "France");
+INSERT INTO geek.utilisateurs VALUES(
+3,
 "Arthus",
+"Loic",
 "homme",
 "loic.arthus@gmail.com",
 "0000",
@@ -73,10 +81,15 @@ INSERT INTO Utilisateurs VALUES
 3,
 1,
 0
-)
+);
 
-("Jeanne",
+
+INSERT INTO geek.adresses VALUES (
+4, "4 rue des fleurs", "67000", "Strasbourg", "France");
+INSERT INTO geek.utilisateurs VALUES(
+4,
 "Dufou",
+"Jeanne",
 "femme",
 "jeanne.dufou@gmail.com",
 "0000",
@@ -84,4 +97,4 @@ INSERT INTO Utilisateurs VALUES
 4,
 1,
 1
-)
+);
