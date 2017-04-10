@@ -21,7 +21,6 @@ public class Deconnection extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().setAttribute("connecte", false);
 		request.getSession().setAttribute("utilisateurConnecte", null);
-		request.getSession().setAttribute("wrongIDS", false);
 		response.sendRedirect("/GEek");
 	}
 

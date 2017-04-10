@@ -48,7 +48,7 @@ public class Connection extends HttpServlet {
 		util.setBlabla(true);
 		Adresse ad = new Adresse("3 rue du chien", "68888", "stras", "france");
 		util.setAdresse(ad);
-		//util = null;
+		util = null;
 
 		if(util != null){
 			request.getSession().setAttribute("connecte", true);
