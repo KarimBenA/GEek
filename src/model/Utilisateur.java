@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import jpa.model.Adress;
+
 ////// CECI EST UN BEAN
 
 public class Utilisateur implements Serializable {
@@ -143,6 +145,10 @@ public class Utilisateur implements Serializable {
 
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
+	}
+	
+	public String getAdresseString(Adress adress) {
+		return adresse.getNumRue() + adresse.getCodePostal() + adresse.getVille() + adresse.getPays();
 	}
 
 

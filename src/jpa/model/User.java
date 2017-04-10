@@ -125,6 +125,11 @@ public class User implements Serializable {
 		this.adress = adress;
 	}
 
+	public String getAdressString(Adress adress) {
+		return adress.getNumRue() + adress.getCodePostal() + adress.getVille() + adress.getPays();
+	}
+	
+	
 	@Override
 	public String toString() {
 		return prenom + "  " + nom;

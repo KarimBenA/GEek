@@ -191,7 +191,7 @@ qu'elle ne peut pas être redimensionnée par l'utilisateur
 									}
 									marker3 = new google.maps.Marker({
 										map : map,
-										draggable: true,
+										draggable : true,
 										position : results[0].geometry.location
 									});
 									/*
@@ -218,7 +218,8 @@ qu'elle ne peut pas être redimensionnée par l'utilisateur
 			<table>
 				<tr>
 					<td><b>Départ: </b></td>
-					<td><input type="text" id="adrDep" value="${utilisateurConnecte.getBlabla()}"
+					<td><input type="text" id="adrDep"
+						value="${utilisateurConnecte.getAdresseString()}"
 						style="width: 300px;"></td>
 				</tr>
 				<tr>
