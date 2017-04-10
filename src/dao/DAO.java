@@ -11,7 +11,7 @@ import jpa.model.User;
 import model.Adresse;
 import model.Utilisateur;
 
-public class DAO {
+public class DAO implements InterfaceDAO {
 
 	private static DAO instance = null;
 
@@ -71,13 +71,6 @@ public class DAO {
 
 			return true;
 		}
-
-		// if(bdd.containsValue(utilisateur)){
-		// return false;
-		// }else{
-		// bdd.put(utilisateur.getEmail(), utilisateur);
-		// return true;
-		// }
 	}
 
 	public boolean supprimeUtilisateur(Utilisateur utilisateur) {
@@ -98,28 +91,19 @@ public class DAO {
 		}
 	}
 
-	//
-	// public boolean modifUser(Utilisateur utilisateur){
-	// if(bdd.containsValue(utilisateur)){
-	// bdd.replace(utilisateur.getEmail(), utilisateur);
-	// return true;
-	// }else{
-	// return false;
-	// }
-	// }
-	//
+	@Override
+	public boolean modifieUtilisateur(Utilisateur utilisateur, Utilisateur utilisateurMAJ) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	public Utilisateur getUtilisateur(String login) {
-		Query query = em.createQuery("SELECT NEW model.Utilisateur(u.nom, u.prenom, u.email, " 
- 				+ "u.pwd, u.telephone, u.genre, u.fumeur, u.blabla, u.adress.numRue, u.adress.codePostal, u.adress.ville, u.adress.pays) " 
- 				+ "FROM User u WHERE u.email = :mail");
+		Query query = em.createQuery("SELECT NEW model.Utilisateur(u.nom, u.prenom, u.email, "
+				+ "u.pwd, u.telephone, u.genre, u.fumeur, u.blabla, u.adress.numRue, u.adress.codePostal, u.adress.ville, u.adress.pays) "
+				+ "FROM User u WHERE u.email = :mail");
 		query.setParameter("mail", login);
 		return (Utilisateur) query.getSingleResult();
 
-		// if(bdd.containsKey(login)){
-		// return bdd.get(login);
-		// }else{
-		// return null;
-		// }
 	}
 
 	public boolean utilisateurExiste(String login) {
@@ -131,67 +115,12 @@ public class DAO {
 
 	public boolean utilisateurExiste(String login, String password) {
 		System.out.println(em);
-		Query query = em.createQuery("SELECT NEW model.Identifiants(u.email, u.pwd) FROM " 
- 				+ "User u WHERE u.email= :mail AND u.pwd= :password");
+		Query query = em.createQuery("SELECT NEW model.Identifiants(u.email, u.pwd) FROM "
+				+ "User u WHERE u.email= :mail AND u.pwd= :password");
 		query.setParameter("mail", login);
 		query.setParameter("password", password);
 		return (query.getResultList().isEmpty()) ? false : true;
 
-		// if(utilisateurExiste(login)){
-		// if(bdd.get(login).getPwd().equals(password)){
-		// return true;
-		// }else{
-		// return false;
-		// }
-		// }else{
-		// return false;
-		// }
 	}
-
-	//////////////////////////////////////////// CREATION BDD
-	//////////////////////////////////////////// /////////////////////////////////
-
-	// private void createBdd(){
-	//
-	// SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-	// Date ddn;
-	//
-	// Utilisateur u1 = new Utilisateur();
-	// u1.setNom("Muller");
-	// u1.setPrenom("Albert");
-	// ddn = null;
-	// try {
-	// ddn = formatter.parse("01-01-1953");
-	// } catch (ParseException e) {
-	// e.printStackTrace();
-	// }
-	// u1.setDdn(ddn);
-	// u1.setEmail("albert.muller@gmail.com");
-	// u1.setPwd("0000");
-	// u1.setTelephone("00.00.00.00.00");
-	// u1.setGenre("homme");
-	// u1.setFumeur(true);
-	// u1.setBlabla(true);
-	// bdd.put(u1.getEmail(), u1);
-	//
-	//
-	// Utilisateur u2 = new Utilisateur();
-	// u2.setNom("Schmitt");
-	// u2.setPrenom("Joséphine");
-	// ddn = null;
-	// try {
-	// ddn = formatter.parse("03-05-1998");
-	// } catch (ParseException e) {
-	// e.printStackTrace();
-	// }
-	// u2.setDdn(ddn);
-	// u2.setEmail("josephine.schmitt@gmail.com");
-	// u2.setPwd("0000");
-	// u2.setTelephone("00.00.00.00.01");
-	// u2.setGenre("femme");
-	// u2.setFumeur(false);
-	// u2.setBlabla(false);
-	// bdd.put(u2.getEmail(), u2);
-	// }
 
 }

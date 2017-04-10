@@ -1,10 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import jpa.model.Adress;
 
 ////// CECI EST UN BEAN
 
@@ -14,7 +10,7 @@ public class Utilisateur implements Serializable {
 
 	String nom;
 	String prenom;
-	Date ddn;
+	//Date ddn;
 	String email;
 	String pwd;
 	String telephone;
@@ -43,7 +39,7 @@ public class Utilisateur implements Serializable {
 	}
 	
 	public Utilisateur(String nom, String prenom, String email, String pwd, String telephone, String genre,
-			Boolean fumeur, Boolean blabla, String rue, String codePostal, String ville, String pays) {
+			Boolean fumeur, Boolean blabla, String rue, String codePostal, String ville, String pays, Point coordonnees) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -53,7 +49,7 @@ public class Utilisateur implements Serializable {
 		this.genre = genre;
 		this.fumeur = fumeur;
 		this.blabla = blabla;
-		this.adresse = new Adresse(rue, codePostal, ville, pays);
+		this.adresse = new Adresse(rue, codePostal, ville, pays,coordonnees);
 	}
 
 
@@ -77,18 +73,6 @@ public class Utilisateur implements Serializable {
 
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
-	}
-
-	public Date getDdn() {
-		return ddn;
-	}
-	public String getDdnToString(){
-		SimpleDateFormat sdf  = new SimpleDateFormat("dd-MM-yyyy");
-		return sdf.format(ddn);
-	}
-
-	public void setDdn(Date ddn) {
-		this.ddn = ddn;
 	}
 
 	public String getEmail() {
@@ -146,10 +130,4 @@ public class Utilisateur implements Serializable {
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
 	}
-	
-	public String getAdresseString(Adress adress) {
-		return adresse.getNumRue() + adresse.getCodePostal() + adresse.getVille() + adresse.getPays();
-	}
-
-
 }
