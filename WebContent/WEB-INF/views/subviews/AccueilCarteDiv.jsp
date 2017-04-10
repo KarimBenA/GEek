@@ -1,1 +1,0 @@
-<div id="divMap" style="float: left; width: 70%; height: 500px"></div>
