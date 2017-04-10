@@ -13,6 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import model.Adresse;
+import model.Point;
 import model.Utilisateur;
 
 public class DAOTest {
@@ -58,7 +59,7 @@ public class DAOTest {
 	@Test
 	public final void testAjouteUtilisateur() {
 		
-		Adresse adresse = new Adresse("26 boulevard de la victoire", "67000", "Strasbourg", "France");
+		Adresse adresse = new Adresse("26 boulevard de la victoire", "67000", "Strasbourg", "France", new Point(Double.valueOf(15),Double.valueOf(23)));
 		Utilisateur utilisateur = new Utilisateur("Ben Ahmed", "Karim", "bak@gmail.com", "123", "0123456789", "homme", true, true, adresse);
 		
 		assertEquals(true,dao.ajouteUtilisateur(utilisateur));
