@@ -6,8 +6,8 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import jpa.model.Adresses;
-import jpa.model.Utilisateurs;
+import jpa.model.Adress;
+import jpa.model.User;
 import model.Adresse;
 import model.Utilisateur;
 
@@ -44,12 +44,12 @@ public class DAO {
 		} else {
 			em.getTransaction().begin();
 
-			Utilisateurs user = new Utilisateurs();
-			Adresses adress = new Adresses();
+			User user = new User();
+			Adress adress = new Adress();
 
 			Adresse adresseUtilisateur = utilisateur.getAdresse();
 
-			adress.setRue(adresseUtilisateur.getNumRue());
+			adress.setNumRue(adresseUtilisateur.getNumRue());
 			adress.setCodePostal(adresseUtilisateur.getCodePostal());
 			adress.setVille(adresseUtilisateur.getVille());
 			adress.setPays(adresseUtilisateur.getPays());
@@ -109,9 +109,9 @@ public class DAO {
 	// }
 	//
 	public Utilisateur getUtilisateur(String login) {
-		Query query = em.createQuery("SELECT NEW model.Utilisateur(u.nom, u.prenom, u.email, "
-				+ "u.pwd, u.telephone, u.genre, u.fumeur, u.blabla, u.adress.numRue, u.adress.codePostal, u.adress.ville, u.adress.pays) "
-				+ "FROM User u WHERE u.email = :mail");
+		Query query = em.createQuery("SELECT NEW model.Utilisateur(u.nom, u.prenom, u.email, " 
+ 				+ "u.pwd, u.telephone, u.genre, u.fumeur, u.blabla, u.adress.numRue, u.adress.codePostal, u.adress.ville, u.adress.pays) " 
+ 				+ "FROM User u WHERE u.email = :mail");
 		query.setParameter("mail", login);
 		return (Utilisateur) query.getSingleResult();
 
@@ -131,8 +131,8 @@ public class DAO {
 
 	public boolean utilisateurExiste(String login, String password) {
 		System.out.println(em);
-		Query query = em.createQuery("SELECT NEW model.Identifiants(u.email, u.pwd) FROM "
-				+ "User u WHERE u.email= :mail AND u.pwd= :password");
+		Query query = em.createQuery("SELECT NEW model.Identifiants(u.email, u.pwd) FROM " 
+ 				+ "User u WHERE u.email= :mail AND u.pwd= :password");
 		query.setParameter("mail", login);
 		query.setParameter("password", password);
 		return (query.getResultList().isEmpty()) ? false : true;

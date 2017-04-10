@@ -3,8 +3,8 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="GEek" transaction-type="RESOURCE_LOCAL">
-		<class>jpa.model.Utilisateurs</class>
-		<class>jpa.model.Adresses</class>
+		<class>jpa.model.User</class>
+		<class>jpa.model.Adress</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/geek" />
 			<property name="javax.persistence.jdbc.user" value="root" />

@@ -41,7 +41,7 @@ public class Utilisateur implements Serializable {
 	}
 	
 	public Utilisateur(String nom, String prenom, String email, String pwd, String telephone, String genre,
-			Boolean fumeur, Boolean blabla, String numRue, String codePostal, String ville, String pays) {
+			Boolean fumeur, Boolean blabla, String rue, String codePostal, String ville, String pays) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -51,7 +51,7 @@ public class Utilisateur implements Serializable {
 		this.genre = genre;
 		this.fumeur = fumeur;
 		this.blabla = blabla;
-		this.adresse = new Adresse(numRue, codePostal, ville, pays);
+		this.adresse = new Adresse(rue, codePostal, ville, pays);
 	}
 
 

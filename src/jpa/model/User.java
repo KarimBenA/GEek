@@ -11,11 +11,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
- * Entity implementation class for Entity: Utilisateurs
+ * Entity implementation class for Entity: User
  *
  */
 @Entity
-public class Utilisateurs implements Serializable {
+public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -33,9 +33,9 @@ public class Utilisateurs implements Serializable {
 	private Boolean fumeur;
 	private Boolean blabla;
 
-	@OneToOne
-	@JoinColumn(name = "idAdresse", referencedColumnName = "idUtilisateur")
-	private Adresses adresse;
+	@ManyToOne
+	@JoinColumn(name = "Adress_id", referencedColumnName = "id")
+	private Adress adress;
 
 	public Long getId() {
 		return id;
@@ -117,12 +117,12 @@ public class Utilisateurs implements Serializable {
 		this.blabla = blabla;
 	}
 
-	public Adresses getAdress() {
-		return adresse;
+	public Adress getAdress() {
+		return adress;
 	}
 
-	public void setAdress(Adresses adresse) {
-		this.adresse = adresse;
+	public void setAdress(Adress adress) {
+		this.adress = adress;
 	}
 
 	@Override
@@ -130,7 +130,7 @@ public class Utilisateurs implements Serializable {
 		return prenom + "  " + nom;
 	}
 
-	public Utilisateurs() {
+	public User() {
 		super();
 	}
 }

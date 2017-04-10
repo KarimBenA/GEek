@@ -3,42 +3,49 @@ CREATE SCHEMA IF NOT EXISTS geek DEFAULT CHARACTER SET utf8 ;
 -- -----------------------------------------------------
 -- Table Adresse
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS geek.adresses (
-  idAdresse BIGINT NOT NULL AUTO_INCREMENT,
-  rue VARCHAR(45) NULL,
-  codePostal VARCHAR(5) NULL,
-  ville VARCHAR(45) NULL,
-  pays VARCHAR(45) NULL,
-  PRIMARY KEY (`idAdresse`));
+CREATE TABLE GEEK.ADRESS (
+ID BIGINT AUTO_INCREMENT NOT NULL, 
+CODEPOSTAL VARCHAR(255), 
+NUMRUE VARCHAR(255), 
+PAYS VARCHAR(255), 
+VILLE VARCHAR(255), 
+PRIMARY KEY (ID)
+);
 
 
 -- -----------------------------------------------------
 -- Table Utilisateur
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS geek.utilisateurs (
-  idUtilistateur BIGINT NOT NULL AUTO_INCREMENT,
-  nom VARCHAR(45) NULL,
-  prenom VARCHAR(45) NULL,
-  genre VARCHAR(45) NULL,
-  email VARCHAR(45) NULL,
-  pwd VARCHAR(45) NULL,
-  telephone VARCHAR(45) NULL,
-  idAdresse BIGINT NULL,
-  blabla TINYINT(1) NULL,
-  fumeur TINYINT(1) NULL,
-  PRIMARY KEY (idUtilistateur),
-  CONSTRAINT idAdresse
-    FOREIGN KEY (idAdresse)
-    REFERENCES geek.adresses (idAdresse)
+CREATE TABLE GEEK.USER (
+ID BIGINT AUTO_INCREMENT NOT NULL, 
+BLABLA TINYINT(1) default 0, 
+EMAIL VARCHAR(255), 
+FUMEUR TINYINT(1) default 0, 
+GENRE VARCHAR(255), 
+NOM VARCHAR(255), 
+PRENOM VARCHAR(255), 
+PWD VARCHAR(255), 
+TELEPHONE VARCHAR(255), 
+Adress_id BIGINT, PRIMARY KEY (ID)
 );
+
+
+-- -----------------------------------------------------
+-- Table Utilisateur/Adresses
+-- -----------------------------------------------------
+CREATE TABLE GEEK.ADRESS_USER (
+Adress_ID BIGINT NOT NULL, 
+users_ID BIGINT NOT NULL, 
+PRIMARY KEY (Adress_ID, users_ID)
+); 
 
 
 -- -----------------------------------------------------
 -- Alimentation des tables
 -- -----------------------------------------------------
-INSERT INTO geek.adresses VALUES (
+INSERT INTO geek.adress VALUES (
 1, "1 rue des fleurs", "67000", "Strasbourg", "France");
-INSERT INTO geek.utilisateurs VALUES(
+INSERT INTO geek.user VALUES(
 1, 
 "Muller", 
 "Albert", 
@@ -52,9 +59,9 @@ INSERT INTO geek.utilisateurs VALUES(
 );
 
 
-INSERT INTO geek.adresses VALUES (
+INSERT INTO geek.adress VALUES (
 2, "2 rue des fleurs", "67000", "Strasbourg", "France");
-INSERT INTO geek.utilisateurs VALUES(
+INSERT INTO geek.user VALUES(
 2,
 "Schmitt",
 "Joséphine",
@@ -68,9 +75,9 @@ INSERT INTO geek.utilisateurs VALUES(
 );
 
 
-INSERT INTO geek.adresses VALUES (
+INSERT INTO geek.adress VALUES (
 3, "3 rue des fleurs", "67000", "Strasbourg", "France");
-INSERT INTO geek.utilisateurs VALUES(
+INSERT INTO geek.user VALUES(
 3,
 "Arthus",
 "Loic",
@@ -84,9 +91,9 @@ INSERT INTO geek.utilisateurs VALUES(
 );
 
 
-INSERT INTO geek.adresses VALUES (
+INSERT INTO geek.adress VALUES (
 4, "4 rue des fleurs", "67000", "Strasbourg", "France");
-INSERT INTO geek.utilisateurs VALUES(
+INSERT INTO geek.user VALUES(
 4,
 "Dufou",
 "Jeanne",

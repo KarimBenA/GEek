@@ -218,7 +218,7 @@ qu'elle ne peut pas être redimensionnée par l'utilisateur
 			<table>
 				<tr>
 					<td><b>Départ: </b></td>
-					<td><input type="text" id="adrDep" value=""
+					<td><input type="text" id="adrDep" value="${utilisateurConnecte.getBlabla()}"
 						style="width: 300px;"></td>
 				</tr>
 				<tr>
