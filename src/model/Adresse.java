@@ -17,8 +17,7 @@ public class Adresse {
 	}
 
 
-	@Override
-	public String toString() {
+	public String getAdresse() {
 		return numRue + " " + codePostal + " " + ville + " " + pays;
 	}
 	

@@ -8,13 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
- * Entity implementation class for Entity: Adress
+ * Entity implementation class for Entity: Adresses
  *
  */
 @Entity
-public class Adress implements Serializable {
+public class Adresses implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,20 +23,20 @@ public class Adress implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String numRue;
+	private String rue;
 	private String codePostal;
 	private String ville;
 	private String pays;
 
-	private Collection<User> users;
-	
-	@OneToMany(mappedBy = "adress")
-	public Collection<User> getUsers() {
-		return users;
+	private Collection<Utilisateurs> utilisateurs;
+
+	@OneToOne(mappedBy = "adresses")
+	public Collection<Utilisateurs> getUtilisateurs() {
+		return utilisateurs;
 	}
 
-	public void setUsers(Collection<User> users) {
-		this.users = users;
+	public void setUtilisateurs(Collection<Utilisateurs> utlisateurs) {
+		this.utilisateurs = utlisateurs;
 	}
 
 	public Long getId() {
@@ -46,12 +47,12 @@ public class Adress implements Serializable {
 		this.id = id;
 	}
 
-	public String getNumRue() {
-		return numRue;
+	public String getRue() {
+		return rue;
 	}
 
-	public void setNumRue(String numRue) {
-		this.numRue = numRue;
+	public void setRue(String rue) {
+		this.rue = rue;
 	}
 
 	public String getCodePostal() {
@@ -78,16 +79,13 @@ public class Adress implements Serializable {
 		this.pays = pays;
 	}
 
-
-	public Adress() {
+	public Adresses() {
 		super();
 	}
 
 	@Override
 	public String toString() {
-		return numRue + "  " + codePostal + "  " + ville + "  " + pays;
+		return rue + "  " + codePostal + "  " + ville + "  " + pays;
 	}
-	
-	
 
 }

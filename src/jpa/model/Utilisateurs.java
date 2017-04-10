@@ -8,13 +8,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
- * Entity implementation class for Entity: User
+ * Entity implementation class for Entity: Utilisateurs
  *
  */
 @Entity
-public class User implements Serializable {
+public class Utilisateurs implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -24,7 +25,7 @@ public class User implements Serializable {
 
 	private String nom;
 	private String prenom;
-	//private Date ddn;
+	// private Date ddn;
 	private String email;
 	private String pwd;
 	private String telephone;
@@ -32,9 +33,9 @@ public class User implements Serializable {
 	private Boolean fumeur;
 	private Boolean blabla;
 
-	@ManyToOne
-	@JoinColumn(name = "Adress_id", referencedColumnName = "id")
-	private Adress adress;
+	@OneToOne
+	@JoinColumn(name = "idAdresse", referencedColumnName = "idUtilisateur")
+	private Adresses adresse;
 
 	public Long getId() {
 		return id;
@@ -60,13 +61,13 @@ public class User implements Serializable {
 		this.prenom = prenom;
 	}
 
-//	public Date getDdn() {
-//		return ddn;
-//	}
-//
-//	public void setDdn(Date ddn) {
-//		this.ddn = ddn;
-//	}
+	// public Date getDdn() {
+	// return ddn;
+	// }
+	//
+	// public void setDdn(Date ddn) {
+	// this.ddn = ddn;
+	// }
 
 	public String getEmail() {
 		return email;
@@ -116,12 +117,12 @@ public class User implements Serializable {
 		this.blabla = blabla;
 	}
 
-	public Adress getAdress() {
-		return adress;
+	public Adresses getAdress() {
+		return adresse;
 	}
 
-	public void setAdress(Adress adress) {
-		this.adress = adress;
+	public void setAdress(Adresses adresse) {
+		this.adresse = adresse;
 	}
 
 	@Override
@@ -129,7 +130,7 @@ public class User implements Serializable {
 		return prenom + "  " + nom;
 	}
 
-	public User() {
+	public Utilisateurs() {
 		super();
 	}
 }
