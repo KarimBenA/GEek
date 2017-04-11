@@ -17,6 +17,9 @@
 	src="https://maps.google.com/maps/api/js?key=AIzaSyD8h15txIXNmhWiH3RKAZGARhONH3ZF4WU"></script>
 
 <script type="text/javascript" src="scripts/ServiceMapsScript.js"></script>
+<script type="text/javascript">
+var depart = '${utilisateurConnecte.getAdresse().toString()}';
+</script>
 </head>
 
 
