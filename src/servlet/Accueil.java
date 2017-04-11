@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.DAO;
 
 
-@WebServlet("/")
+@WebServlet("/index.html")
 public class Accueil extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;

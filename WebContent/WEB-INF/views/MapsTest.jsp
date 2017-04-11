@@ -13,12 +13,12 @@
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	crossorigin="anonymous">
 
-<c:import url="/WEB-INF/views/subviews/ServiceCarteScript.jsp" />
+<c:import url="/WEB-INF/views/subviews/RechercherMapsScript.jsp" />
 
 </head>
 
 
-<body onload="init(); marquer();">
+<body onload="init()">
 
 	<c:import url="/WEB-INF/views/subviews/Menu.jsp" />
 
