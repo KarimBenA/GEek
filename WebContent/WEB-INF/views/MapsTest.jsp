@@ -12,8 +12,11 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	crossorigin="anonymous">
+	
+<script type="text/javascript"
+	src="https://maps.google.com/maps/api/js?key=AIzaSyD8h15txIXNmhWiH3RKAZGARhONH3ZF4WU"></script>
 
-<c:import url="/WEB-INF/views/subviews/RechercherMapsScript.jsp" />
+<script src="scripts/RechercheMapsScript.js"></script>
 
 </head>
 
@@ -61,14 +64,16 @@
 			<table>
 				<tr>
 					<td><b>Afficher un point d'intérêt : </b></td>
-					<td><input type="text" id="adrInteret" value=""
+					<td><input type="text" id="adrBis" value=""
 						style="width: 300px;"></td>
 					<td><input type="submit" value="Marquer"
-						onclick="marquer('adrInteret')"></td>
+						onclick="marquer('adrBis')"></td>
 
 				</tr>
 			</table>
 		</div>
 	</div>
+	
+	<c:import url="/WEB-INF/views/subviews/Footer.jsp" />
 </body>
 </html>
