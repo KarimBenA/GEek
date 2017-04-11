@@ -41,6 +41,19 @@ public class DAOTest {
 	@After
 	public void tearDown() throws Exception {
 	}
+	
+	@Test
+	public final void testListeUtilisateurs() {
+		
+		assertEquals(2,dao.getListeUtilisateurDetails("bak@gmail.com").size());
+		assertEquals(1,dao.getListeUtilisateurDetails("bakaaa@gmail.com").size());
+		assertEquals(1,dao.getListeUtilisateurDetails("bakbbbbb@gmail.com").size());
+		assertEquals("bakaaa@gmail.com",dao.getListeUtilisateurDetails("bakbbbbb@gmail.com").get(0).getEmail());
+		assertEquals("bakbbbbb@gmail.com",dao.getListeUtilisateurDetails("bakaaa@gmail.com").get(0).getEmail());
+		
+	}
+		
+
 
 	@Test
 	public final void testAjouteModifSupprimeExisteUtilisateur() {
@@ -77,6 +90,14 @@ public class DAOTest {
 		assertEquals(true,dao.supprimeUtilisateur(utilisateurMAJ3));
 		assertEquals(false,dao.utilisateurExiste("bak@gmail.com"));
 		assertEquals(false,dao.supprimeUtilisateur(utilisateurMAJ3));
+		
+		Utilisateur utilisateur2 = new Utilisateur("Benaa", "Kaaaa", "bakaaa@gmail.com",
+				"000", "0000000000", "femme", false, false, adresseMAJ3);
+		Utilisateur utilisateur3 = new Utilisateur("Benaa", "Kaaaa", "bakbbbbb@gmail.com",
+				"000", "0000000000", "femme", false, false, adresseMAJ3);
+		
+		assertEquals(true,dao.ajouteUtilisateur(utilisateur2));
+		assertEquals(true,dao.ajouteUtilisateur(utilisateur3));
 		
 	}
 

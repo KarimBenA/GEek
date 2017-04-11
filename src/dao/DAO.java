@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
@@ -12,6 +14,7 @@ import jpa.model.EPoint;
 import jpa.model.User;
 import model.Adresse;
 import model.Utilisateur;
+import model.UtilisateurDetails;
 
 public class DAO implements InterfaceDAO {
 
@@ -37,6 +40,16 @@ public class DAO implements InterfaceDAO {
 	private DAO(EntityManager em) {
 		super();
 		this.em = em;
+	}
+	
+	public List<UtilisateurDetails> getListeUtilisateurDetails(String login) {
+		Query query = em.createQuery("SELECT NEW model.UtilisateurDetails(u.nom, u.prenom, u.email, "
+				+ "u.telephone, u.genre, u.fumeur, u.blabla, u.adress.numRue, u.adress.codePostal, "
+				+ "u.adress.ville, u.adress.pays, "
+				+ "u.adress.coordonnees.lat, u.adress.coordonnees.lng) "
+				+ "FROM User u WHERE u.email != :mail");
+		query.setParameter("mail", login);
+		return (List<UtilisateurDetails>) query.getResultList();
 	}
 
 	public boolean ajouteUtilisateur(Utilisateur utilisateur) {

@@ -96,7 +96,7 @@ public class Adress implements Serializable {
 
 	@Override
 	public String toString() {
-		return numRue + "  " + codePostal + "  " + ville + "  " + pays;
+		return numRue + ",  " + codePostal + ",  " + ville + ",  " + pays;
 	}
 
 }
