@@ -24,6 +24,14 @@ public class Inscription extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		boolean modif = request.getParameter("type").equals(new String("modification"));
+		if(modif){
+			request.getSession().setAttribute("modification", true);
+		}else{
+			request.getSession().setAttribute("modification", false);
+		}
+		
 		RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/views/Inscription.jsp");
 		dispatch.forward(request, response);
 	}
@@ -52,8 +60,14 @@ public class Inscription extends HttpServlet {
 		
 
 		DAO dao = DAO.getInstance();
-		//boolean reussi = dao.ajouteUtilisateur(util);
-		boolean reussi = true;
+		
+		boolean reussi = false;
+		if( (boolean)request.getSession().getAttribute("modification")){
+			reussi = dao.ajouteUtilisateur(util);
+		}else{
+			Utilisateur precUtilisateur = (Utilisateur) request.getSession().getAttribute("utilisateurConencte");
+			reussi = dao.modifieUtilisateur(precUtilisateur, util);
+		}
 		
 		RequestDispatcher dispatch = null;
 		if(reussi){
