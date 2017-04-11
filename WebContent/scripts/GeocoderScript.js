@@ -1,4 +1,5 @@
 function geocodage() {
+	geocoder = new google.maps.Geocoder();
 	
 	var numRue = document.getElementById("numRue").value;
 	var codePostal = document.getElementById("codePostal").value;
