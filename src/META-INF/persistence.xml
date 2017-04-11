@@ -5,6 +5,7 @@
 	<persistence-unit name="GEek" transaction-type="RESOURCE_LOCAL">
 		<class>jpa.model.User</class>
 		<class>jpa.model.Adress</class>
+		<class>jpa.model.EPoint</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/geek" />
 			<property name="javax.persistence.jdbc.user" value="root" />

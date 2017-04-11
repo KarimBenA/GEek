@@ -7,13 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * Entity implementation class for Entity: Adress
  *
  */
 @Entity
+@Table(indexes = { @Index(columnList = "coordonnees", unique = true) })
 public class Adress implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -26,6 +29,7 @@ public class Adress implements Serializable {
 	private String codePostal;
 	private String ville;
 	private String pays;
+	private EPoint coordonnees;
 
 	private Collection<User> users;
 
@@ -76,6 +80,14 @@ public class Adress implements Serializable {
 
 	public void setPays(String pays) {
 		this.pays = pays;
+	}
+	
+	public EPoint getCoordonnees() {
+		return coordonnees;
+	}
+
+	public void setCoordonnees(EPoint coordonnees) {
+		this.coordonnees = coordonnees;
 	}
 
 	public Adress() {

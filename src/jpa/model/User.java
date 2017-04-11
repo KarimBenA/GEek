@@ -6,15 +6,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  * Entity implementation class for Entity: User
  *
  */
 @Entity
+@Table(indexes = { @Index(columnList = "email", unique = true) })
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -123,10 +125,6 @@ public class User implements Serializable {
 
 	public void setAdress(Adress adress) {
 		this.adress = adress;
-	}
-
-	public String getAdressString(Adress adress) {
-		return adress.getNumRue() + adress.getCodePostal() + adress.getVille() + adress.getPays();
 	}
 	
 	
