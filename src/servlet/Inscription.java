@@ -51,7 +51,6 @@ public class Inscription extends HttpServlet {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		util.setDdn(ddn);
 		util.setEmail(request.getParameter("email"));
 		util.setPwd(request.getParameter("pwd"));
 		util.setTelephone(request.getParameter("telephone"));
