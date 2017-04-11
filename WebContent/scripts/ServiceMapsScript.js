@@ -34,12 +34,9 @@ function init() {
 }
 
 function trouveRoute() {
-	var depart = "19 rue de la chapelle 67540 Ostwald";
-	var arrivee = "Les Integrales, Bd Sebastien Brant, 67400 Illkirch-Graffenstaden";
-
 	var request = {
 		origin : depart,
-		destination : arrivee,
+		destination : "Les Integrales, Bd Sebastien Brant, 67400 Illkirch-Graffenstaden",
 		travelMode : google.maps.DirectionsTravelMode["DRIVING"]
 	};
 	/* appel � l'API pour tracer l'itin�raire */
