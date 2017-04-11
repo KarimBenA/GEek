@@ -33,5 +33,7 @@ var depart = '${utilisateurConnecte.getAdresse().toString()}';
 		<div id="divMap" style="float: left; width: 70%; height: 100%"></div>
 		<div id="divRoute" style="float: right; width: 30%; height: 100%"></div>
 	</div>
+	
+	<c:import url="/WEB-INF/views/subviews/Footer.jsp" />
 </body>
 </html>
