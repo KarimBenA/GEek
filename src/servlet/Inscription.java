@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.DAO;
 import model.Adresse;
+import model.Point;
 import model.Utilisateur;
 
 @WebServlet("/Inscription")
@@ -57,7 +58,8 @@ public class Inscription extends HttpServlet {
 		util.setGenre(request.getParameter("genre"));
 		util.setFumeur(request.getParameter("fumeur").equals("oui"));
 		util.setBlabla(request.getParameter("blabla").equals("oui"));
-		Adresse ad = new Adresse(request.getParameter("numRue"),request.getParameter("codePostal"), request.getParameter("ville"), "FRANCE");
+		Point pt = new Point(Double.parseDouble(request.getParameter("latitude")), Double.parseDouble(request.getParameter("longitude")));
+		Adresse ad = new Adresse(request.getParameter("numRue"),request.getParameter("codePostal"), request.getParameter("ville"), "FRANCE", pt);
 		util.setAdresse(ad);
 
 		DAO dao = DAO.getInstance();
