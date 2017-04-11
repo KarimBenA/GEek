@@ -69,6 +69,10 @@
 							
 							<c:if test="${!modification}"><input class="form-control" type="text" name="ville" placeholder="Votre ville"></c:if>
 							<c:if test="${modification}"><input class="form-control" type="text" name="ville" placeholder="${utilisateurConnecte.getAdresse().getVille()}"></c:if>
+						
+							<input type="hidden" name="latitude">
+							<input type="hidden" name="longitude">
+							
 						</div> 
 					</div>
 					<div class="form-group">
@@ -130,8 +134,9 @@
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<c:if test="${!modification}"><input class="btn btn-lg btn-success" type="submit" name="Inscription" value="S'incrire"></c:if>
-							<c:if test="${modification}"><input class="btn btn-lg btn-success" type="submit" name="Inscription" value="Modifier"></c:if>
+							<script src="scripts/GeocoderScript.js"></script>
+							<c:if test="${!modification}"><button onclick="geocodage();" class="btn btn-lg btn-success" type="submit" name="Inscription" value="S'incrire"></button></c:if>
+							<c:if test="${modification}"><button onclick="geocodage();" class="btn btn-lg btn-success" type="submit" name="Inscription" value="Modifier"></button></c:if>
 						</div>
 					</div>
 				</form>
@@ -139,5 +144,4 @@
 		
 		<c:import url="/WEB-INF/views/subviews/Footer.jsp" />
 	</body>
->>>>>>> refs/heads/Gaetan
 </html>
