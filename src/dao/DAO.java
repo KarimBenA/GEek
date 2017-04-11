@@ -2,11 +2,13 @@ package dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import jpa.model.Adress;
+import jpa.model.EPoint;
 import jpa.model.User;
 import model.Adresse;
 import model.Utilisateur;
@@ -45,32 +47,83 @@ public class DAO implements InterfaceDAO {
 			em.getTransaction().begin();
 
 			User user = new User();
-			Adress adress = new Adress();
+			
+			setUtilisateurToUser(utilisateur, user);
 
-			Adresse adresseUtilisateur = utilisateur.getAdresse();
-
-			adress.setNumRue(adresseUtilisateur.getNumRue());
-			adress.setCodePostal(adresseUtilisateur.getCodePostal());
-			adress.setVille(adresseUtilisateur.getVille());
-			adress.setPays(adresseUtilisateur.getPays());
-
-			user.setNom(utilisateur.getNom());
-			user.setPrenom(utilisateur.getPrenom());
-			user.setEmail(utilisateur.getEmail());
-			user.setPwd(utilisateur.getPwd());
-			user.setAdress(adress);
-			user.setTelephone(utilisateur.getTelephone());
-			user.setGenre(utilisateur.getGenre());
-			user.setFumeur(utilisateur.getFumeur());
-			user.setBlabla(utilisateur.getBlabla());
-
-			em.persist(adress);
 			em.persist(user);
 			em.getTransaction().commit();
 			// em.close();
 
 			return true;
 		}
+	}
+
+	private void setUtilisateurToUser(Utilisateur utilisateur, User user) {
+		setAdresseToUser(utilisateur.getAdresse(), user);
+		setUtilisateurExceptAdressToUser(utilisateur, user);
+	}
+
+	private void setUtilisateurExceptAdressToUser(Utilisateur utilisateur, User user) {
+		user.setNom(utilisateur.getNom());
+		user.setPrenom(utilisateur.getPrenom());
+		user.setEmail(utilisateur.getEmail());
+		user.setPwd(utilisateur.getPwd());
+
+		user.setTelephone(utilisateur.getTelephone());
+		user.setGenre(utilisateur.getGenre());
+		user.setFumeur(utilisateur.getFumeur());
+		user.setBlabla(utilisateur.getBlabla());
+	}
+	
+	@Override
+	public boolean modifieUtilisateur(Utilisateur utilisateur, Utilisateur utilisateurMAJ) {
+		
+		if (utilisateur.equals(utilisateurMAJ)){
+			return true;
+		} else if (!utilisateur.getEmail().equals(utilisateurMAJ.getEmail())){
+			return false;
+		} else {
+			em.getTransaction().begin();
+
+			User user = getUser(utilisateur.getEmail());
+			
+			if (!utilisateur.getAdresse().equals(utilisateurMAJ.getAdresse())){				
+				setAdresseToUser(utilisateurMAJ.getAdresse(), user);		
+			}
+
+			setUtilisateurExceptAdressToUser(utilisateur, user);
+
+			
+			em.persist(user);
+			em.getTransaction().commit();
+			return true;
+		}
+		
+		
+	}
+
+	private void setAdresseToUser(Adresse adresse, User user) {
+		Adress adress = new Adress();
+		
+		if (getAdressSiExiste(adresse) != null) {
+			adress = getAdressSiExiste(adresse);
+		} else {
+			adress.setNumRue(adresse.getNumRue());
+			adress.setCodePostal(adresse.getCodePostal());
+			adress.setVille(adresse.getVille());
+			adress.setPays(adresse.getPays());
+
+			EPoint point = new EPoint();
+			point.setLat(adresse.getCoordonnees().getLat());
+			point.setLng(adresse.getCoordonnees().getLng());
+
+			adress.setCoordonnees(point);
+
+			em.persist(point);
+		}
+		
+		user.setAdress(adress);
+		em.persist(adress);
 	}
 
 	public boolean supprimeUtilisateur(Utilisateur utilisateur) {
@@ -90,11 +143,12 @@ public class DAO implements InterfaceDAO {
 			return false;
 		}
 	}
-
-	@Override
-	public boolean modifieUtilisateur(Utilisateur utilisateur, Utilisateur utilisateurMAJ) {
-		// TODO Auto-generated method stub
-		return false;
+	
+	private User getUser(String login) {
+		Query query = em.createQuery("SELECT u "
+				+ "FROM User u WHERE u.email = :mail");
+		query.setParameter("mail", login);
+		return (User) query.getSingleResult();
 	}
 
 	public Utilisateur getUtilisateur(String login) {
@@ -103,7 +157,6 @@ public class DAO implements InterfaceDAO {
 				+ "FROM User u WHERE u.email = :mail");
 		query.setParameter("mail", login);
 		return (Utilisateur) query.getSingleResult();
-
 	}
 
 	public boolean utilisateurExiste(String login) {
@@ -120,7 +173,30 @@ public class DAO implements InterfaceDAO {
 		query.setParameter("mail", login);
 		query.setParameter("password", password);
 		return (query.getResultList().isEmpty()) ? false : true;
-
 	}
+
+	private Adress getAdressSiExiste(Adresse adresse) {
+		Adress result = null;
+		Query query = em
+				.createQuery("SELECT a FROM "
+						+ "Adress a WHERE a.coordonnees.lat= :lat AND a.coordonnees.lng= :lng");
+		query.setParameter("lat", adresse.getCoordonnees().getLat());
+		query.setParameter("lng", adresse.getCoordonnees().getLng());
+		try {
+			result = (Adress) query.getSingleResult();
+		} catch (NoResultException e) {
+			
+		}
+		return result;
+	}
+
+	// public Boolean AdresseExiste(Adresse adresse) {
+	// Query query = em.createQuery("SELECT NEW model.Adresse(a.coordonnees)
+	// FROM "
+	// + "Adress a WHERE a.coordonnees.lat= :lat AND a.coordonnees.lng= :lng");
+	// query.setParameter("lat", adresse.getCoordonnees().getLat());
+	// query.setParameter("lng", adresse.getCoordonnees().getLng());
+	// return (query.getResultList().isEmpty()) ? false : true;
+	// }
 
 }

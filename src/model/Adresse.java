@@ -17,6 +17,11 @@ public class Adresse {
 		this.pays = pays;
 		this.coordonnees = coordonnees;
 	}
+	
+	public Adresse(Point coordonnees) {
+		super();
+		this.coordonnees = coordonnees;
+	}
 
 	@Override
 	public String toString() {
@@ -53,5 +58,23 @@ public class Adresse {
 	public void setCoordonnees(Point coordonnees) {
 		this.coordonnees = coordonnees;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Adresse other = (Adresse) obj;
+		if (coordonnees == null) {
+			if (other.coordonnees != null)
+				return false;
+		} else if (!coordonnees.equals(other.coordonnees))
+			return false;
+		return true;
+	}
+	
 	
 }

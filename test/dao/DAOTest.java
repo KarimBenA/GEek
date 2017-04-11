@@ -41,28 +41,43 @@ public class DAOTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-	
+
 	@Test
-	public final void testUtilisateurExisteStringString() {
+	public final void testAjouteModifSupprimeExisteUtilisateur() {
+		
+		assertEquals(false,dao.utilisateurExiste("bak@gmail.com"));
+		
+		Adresse adresse = new Adresse("32 boulevard de la victoire", "67000", "Strasbourg",
+				"France", new Point(Double.valueOf(22),Double.valueOf(13)));
+		Utilisateur utilisateur = new Utilisateur("Ben Ahmed", "Karim", "bak@gmail.com",
+				"123", "0123456789", "homme", true, true, adresse);
+		Utilisateur utilisateurMAJ = new Utilisateur("Ben", "Ka", "bak@gmail.com",
+				"000", "0000000000", "femme", false, false, adresse);
+		Utilisateur utilisateurMAJ2 = new Utilisateur("Ben", "Ka", "aaa@gmail.com",
+				"000", "0000000000", "femme", false, false, adresse);
+		
+		Adresse adresseMAJ3 = new Adresse("32 boulevard de la victoire", "67000", "Strasbourg",
+				"France", new Point(Double.valueOf(22),Double.valueOf(23)));
+		Utilisateur utilisateurMAJ3 = new Utilisateur("Ben", "Ka", "bak@gmail.com",
+				"000", "0000000000", "femme", false, false, adresseMAJ3);
+		
+		assertEquals(true,dao.ajouteUtilisateur(utilisateur));
+		assertEquals(false,dao.ajouteUtilisateur(utilisateur));
+		assertEquals(true,dao.utilisateurExiste("bak@gmail.com"));
 		assertEquals(true,dao.utilisateurExiste("bak@gmail.com", "123"));
 		assertEquals(false,dao.utilisateurExiste("bak@gmail.com", "1234"));
 		assertEquals(false,dao.utilisateurExiste("abc@gmail.com", "123"));
-	}
-	
-	@Test
-	public final void testSupprimeUtilisateur() {
-		Utilisateur user = dao.getUtilisateur("bak@gmail.com");
-		assertEquals(true,dao.supprimeUtilisateur(user));
-	}
-	
-
-	@Test
-	public final void testAjouteUtilisateur() {
+//		assertEquals(true,dao.supprimeUtilisateur(utilisateur));
+//		assertEquals(false,dao.utilisateurExiste("bak@gmail.com"));
+//		assertEquals(false,dao.supprimeUtilisateur(utilisateur));
+		assertEquals(true,dao.modifieUtilisateur(utilisateur, utilisateurMAJ));
+		assertEquals(false,dao.modifieUtilisateur(utilisateurMAJ, utilisateurMAJ2));
+		assertEquals(true,dao.modifieUtilisateur(utilisateurMAJ, utilisateurMAJ3));
 		
-		Adresse adresse = new Adresse("26 boulevard de la victoire", "67000", "Strasbourg", "France", new Point(Double.valueOf(15),Double.valueOf(23)));
-		Utilisateur utilisateur = new Utilisateur("Ben Ahmed", "Karim", "bak@gmail.com", "123", "0123456789", "homme", true, true, adresse);
+		assertEquals(true,dao.supprimeUtilisateur(utilisateurMAJ3));
+		assertEquals(false,dao.utilisateurExiste("bak@gmail.com"));
+		assertEquals(false,dao.supprimeUtilisateur(utilisateurMAJ3));
 		
-		assertEquals(true,dao.ajouteUtilisateur(utilisateur));
 	}
 
 }
