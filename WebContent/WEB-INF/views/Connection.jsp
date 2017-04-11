@@ -16,6 +16,7 @@
 	<body>
 	<c:if test="${wrongIDS==true}">
 		<script>alert("Erreur d'identifiants, essayez à nouveau")</script>
+		<c:set var="wrongIDS" scope="session" value="${false}"></c:set>
 	</c:if>
 	
 		<c:import url="/WEB-INF/views/subviews/Menu.jsp" />
