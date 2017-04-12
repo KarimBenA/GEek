@@ -63,6 +63,7 @@ function trouveRoute() {
 
 function rechercher(src, src2) {
 	// ptCheck = code; /*adresse de départ ou arrivée ? */
+	geocoder = new google.maps.Geocoder();
 	if (geocoder) {
 		geocoder
 				.geocode(

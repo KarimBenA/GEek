@@ -1,24 +1,4 @@
-function split(listePointsString) {
-	var listePointsTableau;
-	listePointsTableau = listePointsString.split(",");
-	return listePointTableau;
-};
-
-function setLat(listePointTableau) {
-	var latitudes = [];
-	for (var i = 0; i < listePointsTableau.length; 2 * i) {
-		latitudes.push(listePointsTableau[i * 2]);
-	}
-	return latitudes;
-};
-
-function setLng(listePointTableau) {
-	var latitudes = [];
-	var longitudes = [];
-	for (var i = 0; i < listePointsTableau.length; 2 * i) {
-		longitudes.push(listePointsTableau[(i * 2) + 1]);
-	}
-};
+// LES FONCTIONS MATHEMATIQUES POUR LE CALCUL DES DISTANCES
 
 function toRad(degrees) {
 	var radians;
@@ -28,7 +8,7 @@ function toRad(degrees) {
 
 function toDeg(radians) {
 	var degres;
-	degres = (radians*180)/Math.PI;
+	degres = (radians * 180) / Math.PI;
 	return degres;
 }
 
@@ -45,6 +25,7 @@ function distanceCalc(lat1Deg, lng1Deg, lat2Deg, lng2Deg) {
 	return distance;
 };
 
+// UNE FONCTION RECHERCHANT SI UN TABLEAU CONTIENT UNE VALEUR DONNEE
 function contains(array, object) {
 	for (var i = 0; i < array.length; i++) {
 		if (array[i] === object) {
@@ -54,36 +35,78 @@ function contains(array, object) {
 	return false;
 };
 
-// TableauGlobal = [ {utilisateur : user1, liste : listePointsString1},
-// {utilisateur : user2, liste : listePointsString2},
-// ...
-// {utilisateur : usern, liste : listePointsStringn} ]
+/*
+ * <script type="text/javascript">
+ * 
+ * function Candidat(nom, prenom, genre, email, adresse, lat, lng, fumeur,
+ * blabla){ this.nom = nom; this.prenom = prenom; this.genre=genre;
+ * this.email=email; this.adresse=adresse; this.lat=lat; this.lng=lng;
+ * this.fumeur=fumeur; this.blabla=blabla; }
+ * 
+ * var tableauGlobal = []; <c:forEach items="${listeUtilisateurs}" var="user">
+ * tableauGlobal.push(new Candidat('${user.getNom()}', '${user.getPrenom()}',
+ * '${user.getGenre()}', '${user.getEmail}', '${user.getAdresseString()}',
+ * '${user.getLat()}', '${user.getLng}', '${user.getFumeur}',
+ * '${user.getBlabla}')); </c:forEach>
+ * 
+ * creerListePointsString(tableauGlobal); </script>
+ */
 
-// Pour chaque utilisateur, ListePointsString = TableauGlobal[i].liste
+// ON CREE LA LISTE DE POINTS DECRIVANT LE TRAJET
+// RENSEIGNER src = adresse du départ (domicile)
+// ON RECUPERER LA LISTE STRING
+function creerListePointsString(tableau) {
 
-function afficherCandidats(utilisateurConnecte) {
+	for (var i = 0; i < tableau.length; i++) {
+		var utilisateurCandidat = tableau[i];
 
-	var PointConnecte = utilisateurConnecte.getAdresse().getPoint();
-	var LatConnecte = PointConnecte.lat;
-	var LngConnecte = PointConnecte.lng;
+		geocoder = new google.maps.Geocoder();
+		if (geocoder) {
+			geocoder.geocode({
+				'address' : utilisateurCandidat.adresse
+			}, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					depart = results[0].geometry.location;
+				}
+			});
+		}
 
-	var candidats = [];
+		if (depart && arrivee) {
+			var request = {
+				origin : depart,
+				destination : "Les Integrales, Bd Sebastien Brant, 67400 Illkirch-Graffenstaden",
+				travelMode : google.maps.DirectionsTravelMode["DRIVING"]
+			};
+			directionsService.route(request, function(response, status) {
+				var itineraire;
+				if (status == google.maps.DirectionsStatus.OK) {
+					directionsDisplay.setDirections(response);
+					var monTrajet = response.routes[0];
+					var listePoints = monTrajet.overview_path;
+					var nombrePoints = listePoints.length;
+					var latitudesDegres = [];
+					var longitudesDegres = [];
+					for (var j = 0; j < nombrePoints; j++) {
+						var point = listePoints[j];
+						latitudesDegres.push(point.lat());
+						longitudesDegres.push(point.lng());
+					}
+				}
+			});
+		}
 
-	for (var i = 0; i < TableauGlobal.length; i++) {
-		var ListePointsString = TableauGlobal[i].liste;
-		var utilisateurCandidat = TableauGlobal[i].utilisateur;
-		var ListePointTableau = split(listePointsString);
+		var PointConnecte = utilisateurConnecte.getAdresse().getPoint();
+		var LatConnecte = PointConnecte.lat;
+		var LngConnecte = PointConnecte.lng;
 
-		var latitudesDegres = setLat(listePointTableau);
-		var latitudesRadians = [];
+		var candidats = [];
+		var latitudesRadians;
+		var longitudesRadians;
 
 		for (var j = 0; j < latitudesDegres.length; j++) {
 			latitudesRadians.push(toRad(latitudesDegres[j]));
 		}
 		;
-
-		var longitudesDegres = setLng(listePointTableau);
-		var longitudesRadians = [];
 
 		for (var j = 0; j < longitudesDegres.length; j++) {
 			longitudesRadians.push(toRad(longitudesDegres[j]));
@@ -97,35 +120,47 @@ function afficherCandidats(utilisateurConnecte) {
 			if (distance < 1000
 					&& contains(candidats, utilisateurCandidat) == false) {
 				candidats.push({
-					'utilisateur' : utilisateurCandidat,
-					'distance' : distance,
+					'prenom' : utilisateurCandidat.prenom,
+					'nom' : utilisateurCandidat.nom,
+					'genre' : utilisateurCandidat.genre,
+					'email' : utilisateurCandidat.email,
+					'adresse' : utilisateurCandidat.adresse,
+					'fumeur' : utilisateurCandidat.fumeur,
+					'blabla' : utilisateurCandidat.blabla,
 					'latitudeTrajet' : toDeg(latitudesRadians[j]),
 					'longitudeTrajet' : toDeg(longitudesRadians[j])
+				});
+			}
+		}
+	}
+	;
+	marquerTous();
+}
+
+function marquerTous() {
+
+	for (var i = 0; i < candidats.length; i++) {
+		var myLatLng = {
+			lat : candidat.latitudeTrajet,
+			lng : candidat.longitudeTrajet
+		};
+
+		if (geocoder) {
+			geocoder.geocode({
+				'address' : myLatLng
+			}, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					map.setCenter(results[0].geometry.location);
+					if (marker) {
+						marker.setMap(null);
+					}
+					marker = new google.maps.Marker({
+						map : map,
+						position : results[0].geometry.location
 					});
 				}
-			}
-		};
-	return candidats;
-};
+			});
+		}
 
-/*
-La fonction renvoie un array sous la forme :
-exemple pour Joséphine Schmitt :
-		 _______________________________________________________________________________________________
-		|																								|
-		|	utilisateur		|	distance (m)	|	latitudeTrajet (°)		| 	longitudeTrajet (°)	|
-		|_______________________________________________________________________________________________|
-		|					|					|							|							|
-		|	albert (id)		|	800				|	45.157852				|	7.5499782				|
-		 -----------------------------------------------------------------------------------------------
-		|					|					|							|							|
-		|	...				|	...				|	...						|	...						|
-		 -----------------------------------------------------------------------------------------------
-
-accès à albert via : candidats[0];
-à son id via : candidats[0].utilisateur;
-à sa distance /à Joséphine via : candidats[0].distance;
-à la latitude du point du trajet de albert étant le plus proche du domicile de Joséphine-phine-phine : candidats[0].latitudeTrajet;
-à la longitude du point du trajet de albert étant le plus proche du domicile de Joséphine-phine-phine : candidats[0].longitudeTrajet;
-
-*/
+	}
+}
