@@ -12,6 +12,8 @@
 		<c:import url="/WEB-INF/views/subviews/ImportBootstrap.jsp" />
 		<title>Accueil</title>
 		
+		<script type="text/javascript"	src="https://maps.google.com/maps/api/js?key=AIzaSyD8h15txIXNmhWiH3RKAZGARhONH3ZF4WU"></script>
+		
 	</head>
 	
 	<body>
@@ -23,7 +25,7 @@
 		
 		<div class="row">
 				<div class="container col-xs-6">
-					<div class="jumbotron" style="height:500px">	
+					<div id="map" class="jumbotron" style="height:500px">	
 						CARTE GOOGLE MAP		
 					</div>	
 				</div>
@@ -91,6 +93,29 @@
 				//var dispo : distance_km , fumeur (boolean), blabla (boolean), genre ("homme" ou "femme" ou "neutre")
 			}
 		</script>
+		
+		
+		<script type="text/javascript">
+				
+			var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
+			var mapOptions = {
+			  zoom: 4,
+			  center: myLatlng
+			}
+			var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+	
+			var marker = new google.maps.Marker({
+			    position: myLatlng,
+			    title:"Hello World!"
+			});
+			
+			
+	
+			// To add the marker to the map, call setMap();
+			marker.setMap(map);		
+		
+		</script>
+		
 		
 		<c:import url="/WEB-INF/views/subviews/Footer.jsp" />
 	</body>
