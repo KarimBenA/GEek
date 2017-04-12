@@ -13,13 +13,13 @@ function geocodage() {
                         {
                             'address' : adresseSaisie
                         },
-                        function(status, results) {
+                        function(results, status) {
                             if (status == google.maps.GeocoderStatus.OK) {
-                                document.getElementById("numRue").value = results[0].address_components[0].long_name + result[0].address_components[1].long_name;
-                                document.getElementById("codePostal").value = result[0].address_components[6].long_name;
-                                document.getElementById("ville").value = result[0].address_components[2].long_name;
-                                document.getElementById("latitude").value = results[0].geometry.location.lat;
-                                document.getElementById("longitude").value =results[0].geometry.location.lng;
+                                document.getElementById("numRue").value = results[0].address_components[0].long_name + " " + results[0].address_components[1].long_name;
+                                document.getElementById("codePostal").value = results[0].address_components[6].long_name;
+                                document.getElementById("ville").value = results[0].address_components[2].long_name;
+                                document.getElementById("latitude").value = results[0].geometry.location.lat();
+                                document.getElementById("longitude").value =results[0].geometry.location.lng();
                             }
                         })
     }
