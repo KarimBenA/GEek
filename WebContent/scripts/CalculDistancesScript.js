@@ -139,7 +139,18 @@ function creerListePointsString(tableau) {
 
 function marquerTous() {
 
+						
+
 	for (var i = 0; i < candidats.length; i++) {
+		
+		
+		var contentString = 	'<div class="containter">' +
+									'<p>Nom :' + candidats[i].nom + '</p>' + 
+									'<p>Prénom :' + candidats[i].prenom + '</p>' + 
+									'<p>Email :' + candidats[i].email + '</p>' + 
+									'<p>Prénom :' + candidats[i].prenom + '</p>' +
+									'<p>Prénom :' + candidats[i].prenom + '</p>' + 
+									'<button>Contacter</button>';
 		var myLatLng = {
 			lat : candidat.latitudeTrajet,
 			lng : candidat.longitudeTrajet
@@ -154,10 +165,17 @@ function marquerTous() {
 					if (marker) {
 						marker.setMap(null);
 					}
+					
 					marker = new google.maps.Marker({
 						map : map,
 						position : results[0].geometry.location
 					});
+					var infowindow = new google.maps.InfoWindow({
+					    content: contentString
+					  });
+					marker.addListener('click', function() {
+					    infowindow.open(map, marker);
+					  });
 				}
 			});
 		}
