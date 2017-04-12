@@ -26,6 +26,12 @@ function toRad(degrees) {
 	return radians;
 };
 
+function toDeg(radians) {
+	var degres;
+	degres = (radians*180)/Math.PI;
+	return degres;
+}
+
 function distanceCalc(lat1Deg, lng1Deg, lat2Deg, lng2Deg) {
 	var earthRadius = 6378137; // meters
 	var lat1 = toRad(lat1Deg);
@@ -86,16 +92,40 @@ function afficherCandidats(utilisateurConnecte) {
 
 		for (var j = 0; j < latitudesRadians.length; j++) {
 			var distance = distanceCalc(LatConnecte, LngConnecte,
-					latitudesRadian[j], longitudesRadians[j]);
+					latitudesRadians[j], longitudesRadians[j]);
 
 			if (distance < 1000
 					&& contains(candidats, utilisateurCandidat) == false) {
-				candidats.push(utilisateurCandidat);
+				candidats.push({
+					'utilisateur' : utilisateurCandidat,
+					'distance' : distance,
+					'latitudeTrajet' : toDeg(latitudesRadians[j]),
+					'longitudeTrajet' : toDeg(longitudesRadians[j])
+					});
+				}
 			}
-		}
-		;
-	}
-	;
-
+		};
 	return candidats;
 };
+
+/*
+La fonction renvoie un array sous la forme :
+exemple pour Joséphine Schmitt :
+		 _______________________________________________________________________________________________
+		|																								|
+		|	utilisateur		|	distance (m)	|	latitudeTrajet (°)		| 	longitudeTrajet (°)	|
+		|_______________________________________________________________________________________________|
+		|					|					|							|							|
+		|	albert (id)		|	800				|	45.157852				|	7.5499782				|
+		 -----------------------------------------------------------------------------------------------
+		|					|					|							|							|
+		|	...				|	...				|	...						|	...						|
+		 -----------------------------------------------------------------------------------------------
+
+accès à albert via : candidats[0];
+à son id via : candidats[0].utilisateur;
+à sa distance /à Joséphine via : candidats[0].distance;
+à la latitude du point du trajet de albert étant le plus proche du domicile de Joséphine-phine-phine : candidats[0].latitudeTrajet;
+à la longitude du point du trajet de albert étant le plus proche du domicile de Joséphine-phine-phine : candidats[0].longitudeTrajet;
+
+*/
