@@ -166,8 +166,11 @@ public class DAO implements InterfaceDAO {
 
 	public Utilisateur getUtilisateur(String login) {
 		Query query = em.createQuery("SELECT NEW model.Utilisateur(u.nom, u.prenom, u.email, "
-				+ "u.pwd, u.telephone, u.genre, u.fumeur, u.blabla, u.adress.numRue, u.adress.codePostal, u.adress.ville, u.adress.pays) "
+				+ "u.pwd, u.telephone, u.genre, u.fumeur, u.blabla, "
+				+ "u.adress.numRue, u.adress.codePostal, u.adress.ville, u.adress.pays, "
+				+ "u.adress.coordonnees.lat, u.adress.coordonnees.lng) "
 				+ "FROM User u WHERE u.email = :mail");
+		
 		query.setParameter("mail", login);
 		return (Utilisateur) query.getSingleResult();
 	}

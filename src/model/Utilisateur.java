@@ -51,6 +51,21 @@ public class Utilisateur implements Serializable {
 		this.blabla = blabla;
 		this.adresse = new Adresse(rue, codePostal, ville, pays,coordonnees);
 	}
+	
+	public Utilisateur(String nom, String prenom, String email, String pwd, String telephone, String genre,
+			Boolean fumeur, Boolean blabla, String rue, String codePostal, String ville, String pays, 
+			double lat, double lng) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.pwd = pwd;
+		this.telephone = telephone;
+		this.genre = genre;
+		this.fumeur = fumeur;
+		this.blabla = blabla;
+		this.adresse = new Adresse(rue, codePostal, ville, pays,new Point(lat,lng));
+	}
 
 
 	@Override
