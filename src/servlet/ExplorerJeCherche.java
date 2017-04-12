@@ -9,17 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/ExplorerJemmene")
-public class ExplorerJemmene extends HttpServlet {
+@WebServlet("/ExplorerJeCherche")
+public class ExplorerJeCherche extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
-    public ExplorerJemmene() {
+    public ExplorerJeCherche() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/views/ExplorerJemmene.jsp");
+		RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/views/ExplorerJeCherche.jsp");
 		dispatch.forward(request, response);
 	}
 
