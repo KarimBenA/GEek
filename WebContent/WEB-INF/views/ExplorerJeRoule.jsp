@@ -14,6 +14,7 @@
 <script type="text/javascript"
 	src="https://maps.google.com/maps/api/js?key=AIzaSyD8h15txIXNmhWiH3RKAZGARhONH3ZF4WU"></script>
 
+	<script src="scripts/CalculDistancesScript.js"></script>
 </head>
 
 <body>
@@ -126,11 +127,12 @@
 			<script type="text/javascript">
 				tableauGlobal.push(new Candidat('${user.getNom()}',
 						'${user.getPrenom()}', '${user.getGenre()}',
-						'${user.getEmail}', '${user.getAdresseString()}',
-						'${user.getLat()}', '${user.getLng}', '${user.getFumeur}',
-						'${user.getBlabla}'));
+						'${user.getEmail()}', '${user.getAdresseString()}',
+						'${user.getLat()}', '${user.getLng()}', '${user.getFumeur()}',
+						'${user.getBlabla()}'));
 			</script>
 		</c:forEach>
+	
 
 	<script type="text/javascript">
 

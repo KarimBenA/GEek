@@ -61,7 +61,7 @@ function creerListePointsString(tableau) {
 
 	for (var i = 0; i < tableau.length; i++) {
 		var utilisateurCandidat = tableau[i];
-
+		var depart;
 		geocoder = new google.maps.Geocoder();
 		if (geocoder) {
 			geocoder.geocode({
@@ -73,7 +73,6 @@ function creerListePointsString(tableau) {
 			});
 		}
 
-		if (depart && arrivee) {
 			var request = {
 				origin : depart,
 				destination : "Les Integrales, Bd Sebastien Brant, 67400 Illkirch-Graffenstaden",
@@ -95,7 +94,6 @@ function creerListePointsString(tableau) {
 					}
 				}
 			});
-		}
 
 		var PointConnecte = utilisateurConnecte.getAdresse().getPoint();
 		var LatConnecte = PointConnecte.lat;
