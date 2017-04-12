@@ -1,0 +1,98 @@
+<%@ page 	language="java" 
+			contentType="text/html; charset=ISO-8859-1"
+			pageEncoding="ISO-8859-1"%>
+	
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<!DOCTYPE html>
+<html>
+	<head>
+	
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<c:import url="/WEB-INF/views/subviews/ImportBootstrap.jsp" />
+		<title>Accueil</title>
+		
+	</head>
+	
+	<body>
+		<c:import url="/WEB-INF/views/subviews/Menu.jsp" />
+
+		<div class="container text-center">
+		
+		<h1>Je cherche des personnes qui passent près de moi...</h1> <br />
+		
+		<div class="row">
+				<div class="container col-xs-6">
+					<div class="jumbotron" style="height:500px">	
+						CARTE GOOGLE MAP			
+					</div>	
+				</div>
+				<div class="container col-xs-6">
+				
+					<br /><br /><br />
+					<h2>Mon comportement en voiture :</h2> <br />
+				
+					<form class="form-horizontal text-left" action="" method="post">
+						<div class="form-group">
+								<p class="control-label col-xs-6">Distance j'accepte de faire : </p>
+								<div class="col-xs-6">
+									<input onchange="filtrer();" id="rayon" type="number" min="1" max="20"> km
+								</div>
+						</div>
+						<div class="form-group">
+								<p class="control-label col-xs-6">J'aimerais pouvoir fumer en voiture :</p>
+								<div class="col-xs-6">
+									<label><input onchange="filtrer();" type="radio" id="fumeur_oui" name="fumeur" value="oui">Oui</label>
+									<label><input onchange="filtrer();" type="radio" id="fumeur_non" name="fumeur" value="non">Non</label>
+								</div>
+						</div>
+						<div class="form-group">
+								<p class="control-label col-xs-6">Je veux emmener par :</p>
+								<div class="col-xs-6">
+									<label><input onchange="filtrer();" type="radio" id="genre_homme" name="genre" value="homme">Hommes</label>
+									<label><input onchange="filtrer();" type="radio" id="genre_femme" name="genre" value="femme">Femmes</label>
+									<label><input onchange="filtrer();" type="radio" id="genre_neutre" name="genre" value="neutre">Qu'importe</label>
+								</div>
+						</div>
+						<div class="form-group">
+								<p class="control-label col-xs-6">Je ferais la conversation au conducteur :</p>
+								<div class="col-xs-6">
+									<label><input onchange="filtrer();" type="radio" id="blabla_oui" name="blabla" value="oui">oui</label>
+									<label><input onchange="filtrer();" type="radio" id="blabla_non" name="blabla" value="non">non</label>
+								</div>
+						</div>
+					</form>
+				</div>
+		</div>
+		</div>
+		
+		<c:import url="/WEB-INF/views/subviews/Footer.jsp" />
+		<script type="text/javascript">
+			function filtrer(){
+				var distance_km = document.getElementById("rayon").value;
+				if(document.getElementById("fumeur_oui").value == "oui"){
+					var fumeur = true;
+				}else{
+					var fumeur = false;
+				}
+				if(document.getElementById("blabla_oui").value == "oui"){
+					var blabla = true;
+				}else{
+					var blabla = false;
+				}
+				if(document.getElementById("genre_homme").value == "homme"){
+					var genre = "homme";
+				}else if(document.getElementById("genre_femme").value == "femme"){
+					var genre = "femme";
+				}else{
+					var genre = "neutre";
+				}
+				
+				//appel fonction
+				//var dispo : distance_km , fumeur (boolean), blabla (boolean), genre ("homme" ou "femme" ou "neutre")
+			}
+		</script>
+		
+		
+	</body>
+</html>

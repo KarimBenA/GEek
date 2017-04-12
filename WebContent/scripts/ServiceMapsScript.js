@@ -15,13 +15,10 @@ function initOnLoad() {
 function init() {
 	/* gestion des routes */
 	directionsDisplay = new google.maps.DirectionsRenderer();
-	/* emplacement par d�faut de la carte (Toulouse) */
-	var maison = new google.maps.LatLng(48.5223562, 7.7389103);
 	/* option par d�faut de la carte */
 	var myOptions = {
 		zoom : 8,
 		mapTypeId : google.maps.MapTypeId.ROADMAP,
-		center : maison
 	}
 	/* creation de la map */
 	map = new google.maps.Map(document.getElementById("divMap"), myOptions);
@@ -30,7 +27,6 @@ function init() {
 	directionsDisplay.setMap(map);
 	/* intialise le geocoder pour localiser les adresses */
 	geocoder = new google.maps.Geocoder();
-
 }
 
 function trouveRoute() {
@@ -41,7 +37,6 @@ function trouveRoute() {
 	};
 	/* appel � l'API pour tracer l'itin�raire */
 	directionsService.route(request, function(response, status) {
-		var itineraire;
 		if (status == google.maps.DirectionsStatus.OK) {
 			directionsDisplay.setDirections(response);
 			var monTrajet = response.routes[0];
