@@ -19,35 +19,35 @@
 
 		<div class="container text-center">
 		
-		<h1>Je cherche des covoitureurs...</h1> <br />
+		<h1>Je cherche des personnes qui passent près de moi...</h1> <br />
 		
 		<div class="row">
 				<div class="container col-xs-6">
 					<div class="jumbotron" style="height:500px">	
-						CARTE GOOGLE MAP		
+						CARTE GOOGLE MAP			
 					</div>	
 				</div>
 				<div class="container col-xs-6">
 				
 					<br /><br /><br />
-					<h2>Mes préférences de conduite</h2> <br />
+					<h2>Mon comportement en voiture :</h2> <br />
 				
 					<form class="form-horizontal text-left" action="" method="post">
 						<div class="form-group">
-								<p class="control-label col-xs-6">Détour que j'accepte de faire : </p>
+								<p class="control-label col-xs-6">Distance j'accepte de faire : </p>
 								<div class="col-xs-6">
 									<input onchange="filtrer();" id="rayon" type="number" min="1" max="20"> km
 								</div>
 						</div>
 						<div class="form-group">
-								<p class="control-label col-xs-6">J'accepte les fumeurs :</p>
+								<p class="control-label col-xs-6">J'aimerais pouvoir fumer en voiture :</p>
 								<div class="col-xs-6">
 									<label><input onchange="filtrer();" type="radio" id="fumeur_oui" name="fumeur" value="oui">Oui</label>
 									<label><input onchange="filtrer();" type="radio" id="fumeur_non" name="fumeur" value="non">Non</label>
 								</div>
 						</div>
 						<div class="form-group">
-								<p class="control-label col-xs-6">Je veux rouler avec des :</p>
+								<p class="control-label col-xs-6">Je veux emmener par :</p>
 								<div class="col-xs-6">
 									<label><input onchange="filtrer();" type="radio" id="genre_homme" name="genre" value="homme">Hommes</label>
 									<label><input onchange="filtrer();" type="radio" id="genre_femme" name="genre" value="femme">Femmes</label>
@@ -55,7 +55,7 @@
 								</div>
 						</div>
 						<div class="form-group">
-								<p class="control-label col-xs-6">Je suis bavard :</p>
+								<p class="control-label col-xs-6">Je ferais la conversation au conducteur :</p>
 								<div class="col-xs-6">
 									<label><input onchange="filtrer();" type="radio" id="blabla_oui" name="blabla" value="oui">oui</label>
 									<label><input onchange="filtrer();" type="radio" id="blabla_non" name="blabla" value="non">non</label>
@@ -66,6 +66,7 @@
 		</div>
 		</div>
 		
+		<c:import url="/WEB-INF/views/subviews/Footer.jsp" />
 		<script type="text/javascript">
 			function filtrer(){
 				var distance_km = document.getElementById("rayon").value;
@@ -92,6 +93,6 @@
 			}
 		</script>
 		
-		<c:import url="/WEB-INF/views/subviews/Footer.jsp" />
+		
 	</body>
 </html>
