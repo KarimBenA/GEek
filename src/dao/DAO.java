@@ -90,8 +90,9 @@ public class DAO implements InterfaceDAO {
 	
 	@Override
 	public boolean modifieUtilisateur(Utilisateur utilisateur, Utilisateur utilisateurMAJ) {
-		
+
 		if (utilisateur.equals(utilisateurMAJ)){
+			System.out.println("equals");
 			return true;
 		} else if (!utilisateur.getEmail().equals(utilisateurMAJ.getEmail())){
 			return false;
@@ -104,11 +105,12 @@ public class DAO implements InterfaceDAO {
 				setAdresseToUser(utilisateurMAJ.getAdresse(), user);		
 			}
 
-			setUtilisateurExceptAdressToUser(utilisateur, user);
+			setUtilisateurExceptAdressToUser(utilisateurMAJ, user);
 
 			
 			em.persist(user);
 			em.getTransaction().commit();
+			System.out.println("commité");
 			return true;
 		}
 		

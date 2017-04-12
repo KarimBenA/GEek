@@ -10,7 +10,6 @@ public class Utilisateur implements Serializable {
 
 	String nom;
 	String prenom;
-	//Date ddn;
 	String email;
 	String pwd;
 	String telephone;
@@ -72,6 +71,7 @@ public class Utilisateur implements Serializable {
 	public String toString() {
 		return this.getPrenom() + " " + this.getNom();
 	}
+	
 	
 	
 	public String getNom() {
@@ -145,4 +145,7 @@ public class Utilisateur implements Serializable {
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
 	}
+	
+	
+	
 }

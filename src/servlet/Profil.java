@@ -25,12 +25,6 @@ public class Profil extends HttpServlet{
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//temp
-		Utilisateur util = new Utilisateur();
-		util.setPrenom("jacky");
-		util.setNom("Tunning");
-		request.getSession().setAttribute("utilisateurConnecte", util);
-		
 		request.getSession().setAttribute("modification", false);
 		RequestDispatcher dispatch = request.getRequestDispatcher("/WEB-INF/views/Profil.jsp");
 		dispatch.forward(request, response);

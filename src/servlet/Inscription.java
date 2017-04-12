@@ -44,14 +44,6 @@ public class Inscription extends HttpServlet {
 		util.setPrenom(request.getParameter("prenom"));
 		util.setNom(request.getParameter("nom"));
 		
-		String ddnString = request.getParameter("ddn");
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-		Date ddn = null;
-		try {
-			ddn = formatter.parse(ddnString);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
 		util.setEmail(request.getParameter("email"));
 		util.setPwd(request.getParameter("pwd"));
 		util.setTelephone(request.getParameter("telephone"));
@@ -65,10 +57,10 @@ public class Inscription extends HttpServlet {
 		DAO dao = DAO.getInstance();
 		
 		boolean reussi = false;
-		if( (boolean)request.getSession().getAttribute("modification")){
+		if( !(boolean)request.getSession().getAttribute("modification")){
 			reussi = dao.ajouteUtilisateur(util);
 		}else{
-			Utilisateur precUtilisateur = (Utilisateur) request.getSession().getAttribute("utilisateurConencte");
+			Utilisateur precUtilisateur = (Utilisateur) request.getSession().getAttribute("utilisateurConnecte");
 			reussi = dao.modifieUtilisateur(precUtilisateur, util);
 		}
 		

@@ -100,5 +100,23 @@ public class DAOTest {
 		assertEquals(true,dao.ajouteUtilisateur(utilisateur3));
 		
 	}
+	
+	@Test
+	public final void testModifUtilisateur() {
+		
+		Adresse adresse = new Adresse("32 boulevard de la victoire", "67000", "Strasbourg",
+				"France", new Point(Double.valueOf(22),Double.valueOf(13)));
+
+		Utilisateur utilisateur = new Utilisateur("E", "F", "eee@gmail.com",
+				"123", "0123456789", "homme", true, true, adresse);
+		
+		assertEquals(true,dao.ajouteUtilisateur(utilisateur));
+		
+		Utilisateur utilisateurMAJ = new Utilisateur("M", "M", "eee@gmail.com",
+				"123", "0123456789", "homme", true, true, adresse);
+
+		assertEquals(true,dao.modifieUtilisateur(utilisateur, utilisateurMAJ));
+		
+	}
 
 }
