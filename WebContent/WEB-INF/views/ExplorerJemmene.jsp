@@ -91,7 +91,7 @@
 				//appel fonction
 				//var dispo : distance_km , fumeur (boolean), blabla (boolean), genre ("homme" ou "femme" ou "neutre")
 			}
-		</script>"
+		</script>
 		
 		
 	</body>
