@@ -55,6 +55,8 @@ function contains(array, object) {
 // ON CREE LA LISTE DE POINTS DECRIVANT LE TRAJET
 // RENSEIGNER src = adresse du départ (domicile)
 // ON RECUPERER LA LISTE STRING
+
+
 function creerListePointsString(tableau) {
 
 	for (var i = 0; i < tableau.length; i++) {
