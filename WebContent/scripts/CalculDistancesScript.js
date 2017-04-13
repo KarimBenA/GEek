@@ -1,5 +1,9 @@
 // LES FONCTIONS MATHEMATIQUES POUR LE CALCUL DES DISTANCES
 
+// Ajoutés// service GoogleMaps
+var directionsService = new google.maps.DirectionsService();
+var candidats = [];
+
 function toRad(degrees) {
 	var radians;
 	radians = degrees * Math.PI / 180;
@@ -78,6 +82,11 @@ function creerListePointsString(tableau) {
 				destination : "Les Integrales, Bd Sebastien Brant, 67400 Illkirch-Graffenstaden",
 				travelMode : google.maps.DirectionsTravelMode["DRIVING"]
 			};
+			
+			//sorties de la fonction route qui suit
+			var latitudesDegres = [];
+			var longitudesDegres = [];
+			
 			directionsService.route(request, function(response, status) {
 				var itineraire;
 				if (status == google.maps.DirectionsStatus.OK) {
@@ -85,8 +94,7 @@ function creerListePointsString(tableau) {
 					var monTrajet = response.routes[0];
 					var listePoints = monTrajet.overview_path;
 					var nombrePoints = listePoints.length;
-					var latitudesDegres = [];
-					var longitudesDegres = [];
+
 					for (var j = 0; j < nombrePoints; j++) {
 						var point = listePoints[j];
 						latitudesDegres.push(point.lat());
@@ -95,13 +103,15 @@ function creerListePointsString(tableau) {
 				}
 			});
 
-		var PointConnecte = utilisateurConnecte.getAdresse().getPoint();
-		var LatConnecte = PointConnecte.lat;
-		var LngConnecte = PointConnecte.lng;
+//		bougés au JSP
+//		var PointConnecte = utilisateurConnecte.getAdresse().getPoint();
+//		var LatConnecte = PointConnecte.lat;
+//		var LngConnecte = PointConnecte.lng;
 
-		var candidats = [];
-		var latitudesRadians;
-		var longitudesRadians;
+		//var candidats = []; (déplacée en global)
+		//ajout de = [] sur les 2 suivants
+		var latitudesRadians = [];
+		var longitudesRadians = [];
 
 		for (var j = 0; j < latitudesDegres.length; j++) {
 			latitudesRadians.push(toRad(latitudesDegres[j]));
@@ -117,8 +127,8 @@ function creerListePointsString(tableau) {
 			var distance = distanceCalc(LatConnecte, LngConnecte,
 					latitudesRadians[j], longitudesRadians[j]);
 
-			if (distance < 1000
-					&& contains(candidats, utilisateurCandidat) == false) {
+//			if (distance < 1000
+//					&& contains(candidats, utilisateurCandidat) == false) {
 				candidats.push({
 					'prenom' : utilisateurCandidat.prenom,
 					'nom' : utilisateurCandidat.nom,
@@ -130,7 +140,7 @@ function creerListePointsString(tableau) {
 					'latitudeTrajet' : toDeg(latitudesRadians[j]),
 					'longitudeTrajet' : toDeg(longitudesRadians[j])
 				});
-			}
+			//}
 		}
 	}
 	;

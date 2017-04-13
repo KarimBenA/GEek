@@ -9,12 +9,12 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <c:import url="/WEB-INF/views/subviews/ImportBootstrap.jsp" />
-<title>Accueil</title>
+<title>Je roule</title>
 
 <script type="text/javascript"
 	src="https://maps.google.com/maps/api/js?key=AIzaSyD8h15txIXNmhWiH3RKAZGARhONH3ZF4WU"></script>
 
-	<script src="scripts/CalculDistancesScript.js"></script>
+	<script src="scripts/CalculDistancesScript2.js"></script>
 </head>
 
 <body>
@@ -121,6 +121,11 @@
 			this.blabla = blabla;
 		}
 		var tableauGlobal = [];
+		
+		
+		var LatConnecte = ${utilisateurConnecte.getAdresse().getCoordonnees().getLat()};
+		var LngConnecte = ${utilisateurConnecte.getAdresse().getCoordonnees().getLng()};
+		
 		</script>
 
 		<c:forEach items="${listeUtilisateurs}" var="user">
