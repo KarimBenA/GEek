@@ -3,14 +3,21 @@
 <nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>		
 			<a class="navbar-brand" href="<c:url value="/"/>">GEeK</a>
 		</div>
 		
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
 				<c:if test="${connecte}">
-					<li><a href="<c:url value="/ExplorerJeRoule"/>">Je roule</a></li>
-					<li><a href="<c:url value="/ExplorerJeCherche"/>">J'emmène</a></li>
+					<li><a href="<c:url value="/ExplorerJeRoule"/>">Je cherche</a></li>
+					<li><a href="<c:url value="/ExplorerJeCherche"/>">Je roule</a></li>
 				</c:if>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
